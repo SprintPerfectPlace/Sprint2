@@ -1,0 +1,51 @@
+.Cadastro .container{
+    margin-top: 60px;
+    background-color:#6351C399;
+    width: 500px;
+    height: 670px;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    display: flex;
+    /* align-items: center;  */
+    justify-content: center; 
+    text-align: center;
+    padding: 20px;
+}
+
+input{
+    border-radius: 5px 5px 5px 5px;
+    border: 0;
+    width: 400px;
+    height: 25px;
+}
+
+p{
+    font-size: 15px;
+    font-family: Arial;
+}
+
+button{
+    width: 200px;
+    height: 50px;
+    background-color: rgba(65, 24, 100, 0.63);
+    color: white;
+    border-radius: 20px;
+    border: 0 ;
+    margin-top: 50px;
+}
+
+/* Login */
+
+.Login .container{
+    margin-top: 60px;
+    background-color:#6351C399;
+    width: 500px;
+    height:300px;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    display: flex;
+    /* align-items: center;  */
+    justify-content: center; 
+    text-align: center;
+    padding: 20px;
+}
