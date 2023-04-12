@@ -9,7 +9,7 @@
 #include <DHT.h>
 #include <DHT_U.h>
 
-#define DHTPIN A3
+#define DHTPIN A0
 
 #define LM35PIN A1
 #define LUMIPIN A2
@@ -30,8 +30,8 @@ void loop() {
   Serial.print(dht11_umidade);
   Serial.print(";");
   Serial.print(dht11_temperatura);
-    Serial.println(";");
-      
+    Serial.print(";");
+          
     float luminosidade = analogRead(LUMIPIN);
     Serial.print(luminosidade);
     Serial.print(";");
