@@ -10,14 +10,17 @@ CREATE TABLE Empresa(
 );
 
 CREATE TABLE Usuario(
-	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+	idUsuario INT AUTO_INCREMENT,
     nome VARCHAR (20),
     sobrenome VARCHAR (20),
     email VARCHAR(60),
     senha CHAR (8),
     fkEmpresa INT,
-    CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+    CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa),
+    CONSTRAINT pkCompostaUsuarioEmpresa PRIMARY KEY (idUsuario, fkEmpresa)
 );
+
+DROP TABLE Usuario;
 
 CREATE TABLE LocalSensor(
 	idLocal INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,8 +40,10 @@ CREATE TABLE Sensor(
 );
 
 CREATE TABLE Leitura(
-	idLeitura INT PRIMARY KEY AUTO_INCREMENT,
+	idLeitura INT AUTO_INCREMENT,
     dado VARCHAR (10),
     fkSensor INT,
-    CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
+    DtLeitura DATETIME,
+    CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor),
+    CONSTRAINT pkCompostaLeituraSensor PRIMARY KEY (idLeitura, fkSensor)
 );
