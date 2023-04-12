@@ -1,6 +1,6 @@
 # Seja Bem Vindos, Somos a Perfect Place
 
-###    <img src="IMG/logo1.png">
+###    <img src="https://raw.githubusercontent.com/SprintPerfectPlace/Sprint2/main/IMG/Logo1.png">
 ##    <p>Descubra a melhor localização para o seu negócio...</p>
 
 
