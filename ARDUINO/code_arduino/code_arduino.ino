@@ -26,15 +26,15 @@ void setup() {
 
 void loop() {
   float dht11_umidade = dht.readHumidity();
-  float dht11_temperatura = dht.readTemperature();
+  // float dht11_temperatura = dht.readTemperature();
   Serial.print(dht11_umidade);
   Serial.print(";");
-  Serial.print(dht11_temperatura);
-    Serial.print(";");
+  // Serial.print(dht11_temperatura);
+  //   Serial.print(";");
           
-    float luminosidade = analogRead(LUMIPIN);
-    Serial.print(luminosidade);
-    Serial.print(";");
+    // float luminosidade = analogRead(LUMIPIN);
+    // Serial.print(luminosidade);
+    // Serial.print(";");
     float lm35_temperatura = analogRead(LM35PIN);
     lm35_temperatura = lm35_temperatura * 0.00488;
     lm35_temperatura = lm35_temperatura * 100;
