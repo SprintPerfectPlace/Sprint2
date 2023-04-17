@@ -14,13 +14,14 @@ CREATE TABLE Usuario(
     nome VARCHAR (20),
     sobrenome VARCHAR (20),
     email VARCHAR(60),
+    cnpj CHAR (17),
     senha CHAR (8),
     fkEmpresa INT,
     CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa),
     CONSTRAINT pkCompostaUsuarioEmpresa PRIMARY KEY (idUsuario, fkEmpresa)
 );
 
-DROP TABLE Usuario;
+SELECT * FROM Usuario;
 
 CREATE TABLE LocalSensor(
 	idLocal INT PRIMARY KEY AUTO_INCREMENT,

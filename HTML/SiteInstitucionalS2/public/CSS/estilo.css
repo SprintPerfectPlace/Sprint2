@@ -8,15 +8,27 @@ body {
 
 .container {
     display: flex;
-    width: 80%;
+    height: fit-content;
     margin: auto;
+    justify-content: space-between;
+}
+
+.div_logo{
+    width: fit-content;
+    margin: auto;
+    height: fit-content;
+}
+
+.logo2{
+    margin-top: -50px;
+    margin-bottom: -70px;
+    height: 250px;
 }
 
 /* Começo do header */
 .header {
     width: 100%;
-    height: 100px;
-    background-color: #E5E5E5;
+    height: fit-content;
     border-bottom: solid #5F00B4 3px;
     display: flex;
 }
@@ -37,11 +49,14 @@ body {
 }
 
 .navBar {
-    width: 700px;
+    margin-left: 250px;
+    display: flex;
+    background-color: white;
+    width: 800px;
     display: flex;
     color: #5F00B4;
     list-style: none;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .agora {
@@ -50,15 +65,22 @@ body {
 
 a {
     text-decoration: none;
-    color: #5F00B4;
+    color: black;
+}
+
+.navBar a :hover{
+    font-weight: bold;
 }
 
 /* fim do header */
 
 /* Começo do banner */
 
+/* Começo do banner */
+
+
 .banner {
-    background-image: url(/public/IMG/AvenidaPaulista.jpg);
+    background-image: url(/IMG/AvenidaPaulista.jpg);
     background-position: 100% 89%;
     background-size: cover;
     width: 100%;
@@ -66,6 +88,7 @@ a {
 }
 
 .banner .container {
+    margin-right: 50px;
     justify-content: center;
     align-items: end;
     flex-direction: column;
@@ -87,6 +110,7 @@ a {
 }
 
 .btn_banner {
+    color: white;
     border: 0px;
     border-radius: 20px;
     background-color: rgba(95, 0, 180, 0.63);
@@ -243,10 +267,27 @@ a {
     border-radius: 20px;
   }
 /* Fim Perguntas Frequentes */
-/* Inicio Rodapé */
-.Rodape .container{
-    background-color: #5053514a;
+/* Fim Perguntas Frequentes */
+
+.footer {
+    height: var(--tamanho-footer);
     width: 100%;
-    height: 200px;
-}
-/* Fim Rodapé*/
+    background-color: #32b9cd;
+    color: #fff;
+  }
+  
+  .footer h4 {
+    margin: 0;
+  }
+  
+  .footer .container {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .footer .container .version {
+    font-size: 12px;
+    font-weight: 800;
+  }

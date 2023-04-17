@@ -11,12 +11,25 @@
     padding: 20px;
 }
 
+.Login .container{
+    background-color:#6351C399;
+    width: 500px;
+    height: fit-content;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    display: flex;
+    /* align-items: center;  */
+    justify-content: center; 
+    text-align: center;
+    padding: 20px;
+}
+
 .Cadastro{
     text-align: center;
 }
 
-h1{
-
+.Login{
+    text-align: center;
 }
 
 input{
@@ -68,18 +81,13 @@ button{
 }
 
 
-/* Login */
-
-.Login .container{
-    margin-top: 60px;
-    background-color:#6351C399;
-    width: 500px;
-    height:fit-content;
-    margin-bottom: 40px;
-    border-radius: 30px;
-    display: flex;
-    /* align-items: center;  */
-    justify-content: center; 
-    text-align: center;
-    padding: 20px;
-}
+.loading-div {
+    width: 50px;
+    margin: auto;
+    display: none;
+  }
+  
+  .loading-div img {
+    height: 50px;
+    width: 50px;
+  }
