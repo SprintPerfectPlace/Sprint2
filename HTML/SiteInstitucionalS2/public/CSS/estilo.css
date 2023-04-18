@@ -229,7 +229,8 @@ a {
 .FAQ .container {
     align-items: center;
     flex-direction: column;
-    height: 625px;
+    /* height: 625px; */
+    position: relative;
 }
 
 .question {
@@ -267,7 +268,7 @@ a {
     border-radius: 20px;
   }
 /* Fim Perguntas Frequentes */
-/* Fim Perguntas Frequentes */
+
 
 .footer {
     height: var(--tamanho-footer);
@@ -291,3 +292,107 @@ a {
     font-size: 12px;
     font-weight: 800;
   }
+
+  .OutrasDuvidas button{
+    background-color: #5F00B4;
+    width: 150px;
+    height: 30px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: end;
+    color: white;
+    margin-left: 350px;
+  }
+
+
+  .OutrasDuvidas button:active{
+    width: 175px;
+    height: 40px;
+  }
+
+
+  /* Inicio Rodapé */
+
+.rodape .container
+{   
+    flex-direction: column;
+    width: 100%;
+    /* height: 600px; */
+    position: relative;
+    background-color: #fff;
+    align-items: center;
+}
+.rodape .container .emailComercial{
+    display: flex;
+    background-color: #5F00B4;
+    width: 800px;
+    /* height: 300px; */
+    position: relative;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 30px;
+    flex-direction: column;
+    color: white;
+}
+
+.rodape .container .emailComercial input{
+    width: 500px;
+    height: 50px;
+    border: 0;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.rodape .container .emailComercial button{
+    width: 200px;
+    height: 50px;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.38);
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.rodape .container .emailComercial button:hover{
+    width: 300px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.38);
+}
+.rodape .container .informacoes{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+    width: 70%;
+}
+.RedesSociais, .Servicos, .Contato{
+    width: 250px;
+    
+}
+.rodape .container .imgRodape{
+    margin-top: 20px;
+    width: 50px;
+    height: 25px;
+}
+
+.rodape .container .imgRodape{
+    margin-top: 20px;
+    width: 50px;
+    height: 25px;
+}
+.rodape .container .iconeRedesocial{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+ /* Fim Rodapé */
+  
