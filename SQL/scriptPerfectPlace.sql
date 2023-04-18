@@ -5,8 +5,7 @@ USE PerfectPlace;
 CREATE TABLE Empresa(
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR (45),
-    cnpj CHAR (14),
-    qtdSensores INT
+    cnpj CHAR (14)
 );
 
 CREATE TABLE Usuario(
@@ -14,7 +13,6 @@ CREATE TABLE Usuario(
     nome VARCHAR (20),
     sobrenome VARCHAR (20),
     email VARCHAR(60),
-    cnpj CHAR (17),
     senha CHAR (8),
     fkEmpresa INT,
     CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa),
@@ -27,10 +25,9 @@ CREATE TABLE LocalSensor(
 	idLocal INT PRIMARY KEY AUTO_INCREMENT,
     bairro VARCHAR (25),
     rua VARCHAR (25),
-    numero VARCHAR (5),
-    fkEmpresa INT,
-    CONSTRAINT fkLocalEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+    numero VARCHAR (5)
 );
+
 
 CREATE TABLE Sensor(
 	idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,4 +44,17 @@ CREATE TABLE Leitura(
     DtLeitura DATETIME,
     CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor),
     CONSTRAINT pkCompostaLeituraSensor PRIMARY KEY (idLeitura, fkSensor)
+);
+
+
+CREATE TABLE Dashboard(
+	idDashboard INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario INT,
+    Usuario_fkEmpresa INT,
+    fkLeitura INT,
+    Leitura_fkSensor INT,
+    CONSTRAINT fkUsarioDashboard FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
+    CONSTRAINT fkUsarioEmpresaDashboard FOREIGN KEY (Usuario_fkEmpresa) REFERENCES Empresa(idEmpresa),
+    CONSTRAINT fkLeituraDashboard FOREIGN KEY (fkLeitura) REFERENCES Leitura(idLeitura),
+    CONSTRAINT fkLeituraSensorDashboard FOREIGN KEY (Leitura_fkSensor) REFERENCES Sensor(idSensor)
 );
