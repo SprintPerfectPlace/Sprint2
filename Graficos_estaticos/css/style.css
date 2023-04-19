@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.container {
+    width: 900px;
+}

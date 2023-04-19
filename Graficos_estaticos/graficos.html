@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráficos sobre a Av.Paulista</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<div class="container">
+  
+    <div>
+      <h1> Movimento da Av.Paulista </h1>
+      <canvas id="myChart"></canvas>
+    </div>
+  
+    <div>
+      <h1> Temperatura da Av.Paulista </h1>
+      <canvas id="myChart2"></canvas>
+    </div>
+  
+    <div>
+      <h1> Umidade da Av.Paulista </h1>
+      <canvas id="myChart3"></canvas>
+    </div>
+    
+    <div>
+      <h1> Movimento, Temperatura, Umidade da Av.Paulista </h1>
+      <canvas id="myChart4"></canvas>
+      <p>
+          Dados do sensor que capta o movimento está sendo dado em porcentagem.
+      </p>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+        '1: 00 as 2: 00',
+        '2: 00 as 3: 00',
+        '3: 00 as 4: 00',
+        '4: 00 as 5: 00',
+        '5: 00 as 6: 00',
+        '6: 00 as 7: 00',
+        '7: 00 as 8: 00',
+        '8: 00 as 9: 00',
+        '9: 00 as 10: 00',
+        '10: 00 as 11: 00',
+        '11: 00 as 12: 00',
+        '12: 00 as 13: 00',
+        '13: 00 as 14: 00',
+        '14: 00 as 15: 00',
+        '15: 00 as 16: 00',
+        '16: 00 as 17: 00',
+        '17: 00 as 18: 00',
+        '18: 00 as 19: 00',
+        '19: 00 as 20: 00',
+        '20: 00 as 21: 00',
+        '21: 00 as 22: 00',
+        '22: 00 as 23: 00',
+        '23: 00 as 24: 00'],
+
+      datasets: [
+        {
+          label: 'Valor dado pelo sensor',
+          backgroundColor: 'purple',
+          borderColor: 'purple',
+          data: [
+            7500,
+            7500,
+            7500,
+            7500,
+            120000,
+            180000,
+            75000,
+            75000,
+            75000,
+            15000,
+            15000,
+            225000,
+            120000,
+            30000,
+            75000,
+            75000,
+            180000,
+            75000,
+            75000,
+            30000,
+            15000,
+            7500,
+            7500
+          ],
+        },
+        {
+          label: 'Valor simulado',
+          backgroundColor: 'green',
+          borderColor: 'green',
+          data: [
+            5000,
+            5000,
+            5000,
+            5000,
+            80000,
+            120000,
+            50000,
+            50000,
+            50000,
+            10000,
+            10000,
+            150000,
+            80000,
+            20000,
+            50000,
+            50000,
+            120000,
+            50000,
+            50000,
+            20000,
+            10000,
+            5000,
+            5000
+          ],
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const labels = [
+        '1: 00 as 2: 00',
+        '2: 00 as 3: 00',
+        '3: 00 as 4: 00',
+        '4: 00 as 5: 00',
+        '5: 00 as 6: 00',
+        '6: 00 as 7: 00',
+        '7: 00 as 8: 00',
+        '8: 00 as 9: 00',
+        '9: 00 as 10: 00',
+        '10: 00 as 11: 00',
+        '11: 00 as 12: 00',
+        '12: 00 as 13: 00',
+        '13: 00 as 14: 00',
+        '14: 00 as 15: 00',
+        '15: 00 as 16: 00',
+        '16: 00 as 17: 00',
+        '17: 00 as 18: 00',
+        '18: 00 as 19: 00',
+        '19: 00 as 20: 00',
+        '20: 00 as 21: 00',
+        '21: 00 as 22: 00',
+        '22: 00 as 23: 00',
+        '23: 00 as 24: 00'
+  ]
+
+  const data = {
+    labels: labels,
+    datasets: [{
+          label: 'Valor real dado pelo sensor',
+          backgroundColor: 'purple',
+          borderColor: 'purple',
+          data: [
+            17,
+            17,
+            17,
+            17,
+            19,
+            16,
+            16,
+            18,
+            19,
+            19,
+            22,
+            24,
+            26,
+            26,
+            28,
+            29,
+            28,
+            27,
+            24,
+            22,
+            22,
+            18,
+            15
+          ],
+        },
+        {
+          label: 'Valor simulado',
+          backgroundColor: 'green',
+          borderColor: 'green',
+          data: [
+            12,
+            12,
+            12,
+            12,
+            14,
+            11,
+            11,
+            13,
+            14,
+            14,
+            17,
+            19,
+            21,
+            21,
+            23,
+            24,
+            23,
+            22,
+            19,
+            17,
+            17,
+            13,
+            10
+          ],
+        }
+    ]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config
+  );
+
+const ctx2 = document.getElementById('myChart3');
+
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: [
+        '1: 00 as 2: 00',
+        '2: 00 as 3: 00',
+        '3: 00 as 4: 00',
+        '4: 00 as 5: 00',
+        '5: 00 as 6: 00',
+        '6: 00 as 7: 00',
+        '7: 00 as 8: 00',
+        '8: 00 as 9: 00',
+        '9: 00 as 10: 00',
+        '10: 00 as 11: 00',
+        '11: 00 as 12: 00',
+        '12: 00 as 13: 00',
+        '13: 00 as 14: 00',
+        '14: 00 as 15: 00',
+        '15: 00 as 16: 00',
+        '16: 00 as 17: 00',
+        '17: 00 as 18: 00',
+        '18: 00 as 19: 00',
+        '19: 00 as 20: 00',
+        '20: 00 as 21: 00',
+        '21: 00 as 22: 00',
+        '22: 00 as 23: 00',
+        '23: 00 as 24: 00'],
+
+      datasets: [
+        {
+          label: 'Valor dado pelo sensor',
+          backgroundColor: 'purple',
+          borderColor: 'purple',
+          data: [
+            88,
+            88,
+            90,
+            90,
+            90,
+            84,
+            84,
+            84,
+            61,
+            61,
+            61,
+            52,
+            52,
+            65,
+            65,
+            65,
+            65,
+            32,
+            32,
+            32,
+            87,
+            87,
+            88
+          ],
+        },
+        {
+          label: 'Valor simulado',
+          backgroundColor: 'green',
+          borderColor: 'green',
+          data: [
+            58,
+            58,
+            60,
+            60,
+            60,
+            54,
+            54,
+            54,
+            31,
+            31,
+            31,
+            22,
+            22,
+            22,
+            35,
+            35,
+            35,
+            2,
+            2,
+            57,
+            57,
+            58
+          ],
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx3 = document.getElementById('myChart4');
+
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: [
+        '1: 00 as 2: 00',
+        '2: 00 as 3: 00',
+        '3: 00 as 4: 00',
+        '4: 00 as 5: 00',
+        '5: 00 as 6: 00',
+        '6: 00 as 7: 00',
+        '7: 00 as 8: 00',
+        '8: 00 as 9: 00',
+        '9: 00 as 10: 00',
+        '10: 00 as 11: 00',
+        '11: 00 as 12: 00',
+        '12: 00 as 13: 00',
+        '13: 00 as 14: 00',
+        '14: 00 as 15: 00',
+        '15: 00 as 16: 00',
+        '16: 00 as 17: 00',
+        '17: 00 as 18: 00',
+        '18: 00 as 19: 00',
+        '19: 00 as 20: 00',
+        '20: 00 as 21: 00',
+        '21: 00 as 22: 00',
+        '22: 00 as 23: 00',
+        '23: 00 as 24: 00'],
+
+      datasets: [
+        {
+          label: 'Movimento',
+          backgroundColor: 'purple',
+          borderColor: 'purple',
+          data: [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          8,
+          12,
+          5,
+          5,
+          5,
+          1,
+          1,
+          15,
+          8,
+          2,
+          5,
+          5,
+          12,
+          5,
+          5,
+          2,
+          1,
+          0.5,
+          0.5
+          ],
+        },
+        {
+          label: 'Temperatura',
+          backgroundColor: 'green',
+          borderColor: 'green',
+          data: [
+            17,
+            17,
+            17,
+            17,
+            19,
+            16,
+            16,
+            18,
+            19,
+            19,
+            22,
+            24,
+            26,
+            26,
+            28,
+            29,
+            28,
+            27,
+            24,
+            22,
+            22,
+            18,
+            15
+          ],
+        },
+        {
+          label: 'Umidade',
+          backgroundColor: 'orange',
+          borderColor: 'orange',
+          data: [
+            58,
+            58,
+            60,
+            60,
+            60,
+            54,
+            54,
+            54,
+            31,
+            31,
+            31,
+            22,
+            22,
+            22,
+            35,
+            35,
+            35,
+            2,
+            2,
+            57,
+            57,
+            58
+          ],
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+</script>
+
