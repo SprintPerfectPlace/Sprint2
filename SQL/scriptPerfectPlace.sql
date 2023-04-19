@@ -8,6 +8,11 @@ CREATE TABLE Empresa(
     cnpj CHAR (14)
 );
 
+INSERT INTO Empresa VALUES
+(null, 'SPTech', '12345678901234'),
+(null, 'Safra', '11223344556677'),
+(null, 'Safra', '22334455667788');
+
 CREATE TABLE Usuario(
 	idUsuario INT AUTO_INCREMENT,
     nome VARCHAR (20),
