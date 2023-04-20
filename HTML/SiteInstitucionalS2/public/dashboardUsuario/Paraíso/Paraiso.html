@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paraíso</title>
+    <link rel="stylesheet" href="Paraíso.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="conteudo">
+        <div class="barraFixa">
+            <div class="imgUser">
+                <img src="https://th.bing.com/th/id/R.c11b6f38dffc24a4508217513b0e50bd?rik=Pt%2bkITlukiMkWg&riu=http%3a%2f%2fwww.emmegi.co.uk%2fwp-content%2fuploads%2f2019%2f01%2fUser-Icon.jpg&ehk=zjS04fF4nxx%2bpkvRPsSezyic3Z7Yfu%2fuoT75KnbNv1Y%3d&risl=&pid=ImgRaw&r=0"
+                    alt="">
+            </div>
+            <div class="opcoes">
+                <a href="../homeDasboard/homeDashboard.html" class="home">
+                    Home | Dashboard
+                </a>
+                <a href="../JardimPaulista/jardimPaulista.html" class="paulista">
+                    Jardim Paulista
+                </a>
+                <a href="../César/CerqueiraCesar.html" class="cesar">
+                    Cerqueira César
+                </a>
+                <a href="../Paraíso/Paraiso.html" id="agora" class="paraiso">
+                    Paraiso
+                </a>
+                <a href="../Consolação/Consolação.html" class="consolacao">
+                    Consolação
+                </a>
+                <a href="../BelaVista/BelaVista.html" class="vista">
+                    Bela Vista
+                </a>
+                <a href="/SiteInstitucionalS2/public/Index.html" class="sair">
+                    Sair
+                </a>
+                <a href="/SiteInstitucionalS2/public/arduino_api_v3/apiarduino.html" class="sensores">
+                    Sensores ao Vivo
+                </a>
+            </div>
+        </div>
+        <div class="graficos">
+            <h1>Paraíso</h1>
+<div class="ResultaG1">
+                    
+                </div>
+            <div class="Parte1">
+                <div class="Grafico1" >
+                    <canvas id="myChart"></canvas>
+                </div>  <h2>Temperatura:<br> 
+                    Abaixo está a temperatura medida <br> em graus com gráfico de barras.</h2> 
+            </div>
+
+            <div class="Parte1">
+                <h2>Umidade:<br> 
+                    Abaixo está a umidade medida <br> em porcentagem com gráfico de linhas.</h2> 
+                <div class="Grafico2" >
+                    <canvas id="myChart2"></canvas>
+
+                </div>
+                <div class="ResultaG1">
+                   </div>
+                   
+                </div>
+
+                <div class="Parte1"> 
+                   <div class="Grafico3" >
+                        <canvas id="myChart3" ></canvas>
+                    </div>    
+                    <h2>Movimento:<br> 
+                        Abaixo está o movimento medido <br> com contagem de pessoas usando gráficos de linhas.</h2>
+                    <div class="ResultaG1">
+                    </div>   
+                    
+                    </div>
+                    
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- Fim do header -->
+</body>
+
+</html>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: [12,
+12,
+12,
+12,
+14,
+11,
+11,
+13,
+14,
+14,
+17,
+19,
+21,
+21,
+23,
+24,
+23,
+22,
+19,
+17,
+17,
+13,
+10,
+],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+    type: 'line',
+    data: {
+
+        labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
+        datasets: [{
+            label: 'Umidade (%)',
+            data: [58,
+58,
+60,
+60,
+60,
+54,
+54,
+54,
+31,
+31,
+31,
+22,
+22,
+22,
+35,
+35,
+35,
+2,
+2,
+2,
+57,
+57,
+58,
+],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const ctx3 = document.getElementById('myChart3');
+
+    new Chart(ctx3, {
+    type: 'line',
+    data: {
+
+        labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
+        datasets: [{
+            label: 'Movimento',
+            data: [1800,
+200,
+2500,
+1600,
+24000,
+32000,
+20000,
+15000,
+10000,
+3000,
+1000,
+50000,
+15000,
+6000,
+17000,
+12000,
+49000,
+10000,
+19000,
+7000,
+3000,
+1500,
+1000,
+
+],
+            borderWidth: 3
+        }]
+    },
+    options: {
+    
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+</script>
