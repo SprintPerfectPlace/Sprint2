@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paraíso</title>
-    <link rel="stylesheet" href="Paraíso.css">
+    <link rel="stylesheet" href="../CSS/dasboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -45,45 +45,92 @@
             </div>
         </div>
         <div class="graficos">
-            <h1>Paraíso</h1>
-<div class="ResultaG1">
-                    
+            <h1>Paraiso</h1><br>
+            <h2>Temperatura:</h2>
+            <div class="Analytics_Temperatura">
+                <div class="cardAlerta">
+                    Muito Frio <br> 7°C
                 </div>
-            <div class="Parte1">
-                <div class="Grafico1" >
+                <div class="cardTolerante">
+                    Frio <br> 13°C
+                </div>
+                <div class="cardBom">
+                    Muito Agradável <br> 24°C
+                </div>
+                <div class="cardTolerante">
+                    Desagradável <br> 29°C
+                </div>
+                <div class="cardAlerta">
+                    Muito Calor <br> 35°C
+                </div>
+            </div>
+            <div class="Temperatura">
+                <div class="Grafico1">
                     <canvas id="myChart"></canvas>
-                </div>  <h2>Temperatura:<br> 
-                    Abaixo está a temperatura medida <br> em graus com gráfico de barras.</h2> 
+                </div>
+                <div class="Texto_Grafico">
+                    Com base nos dados captados do sensor <b>LM-35</b>, temos o dashboard com o gráfico de temperatura do último dia.
+                </div>
             </div>
-
-            <div class="Parte1">
-                <h2>Umidade:<br> 
-                    Abaixo está a umidade medida <br> em porcentagem com gráfico de linhas.</h2> 
-                <div class="Grafico2" >
+            <br><br>
+            <h2>Umidade:</h2>
+            <div class="Analytics_Umidade">
+                <div class="cardAlerta">
+                    Umidade Alta <br> 100%
+                </div>
+                <div class="cardTolerante">
+                    Umidade Desconfortável <br> 80%
+                </div>
+                <div class="cardBom">
+                    Umidade Boa <br> 60%
+                </div>
+                <div class="cardTolerante">
+                    Umidade Desconfortável <br> 40%
+                </div>
+                <div class="cardAlerta">
+                    Umidade Baixa <br> 20%
+                </div>
+            </div>
+            <div class="Umidade">
+                <div class="Texto_Grafico">
+                    Com base nos dados captados do sensor <b>DHT-11</b>, temos o dashboard com o gráfico de umidade do último dia.
+                </div>
+                <div class="Grafico2">
                     <canvas id="myChart2"></canvas>
-
                 </div>
-                <div class="ResultaG1">
-                   </div>
-                   
+            </div>
+            <br><br>
+            <h2>Movimento:</h2>
+            <div class="Analytics_Movimento">
+                <div class="cardAlerta">
+                    Pouco Movimentado <br> 7,500
                 </div>
-
-                <div class="Parte1"> 
-                   <div class="Grafico3" >
-                        <canvas id="myChart3" ></canvas>
-                    </div>    
-                    <h2>Movimento:<br> 
-                        Abaixo está o movimento medido <br> com contagem de pessoas usando gráficos de linhas.</h2>
-                    <div class="ResultaG1">
-                    </div>   
-                    
-                    </div>
-                    
+                <div class="cardTolerante">
+                    Movimento Baixo <br> 30,000
+                </div>
+                <div class="cardBom">
+                    Movimentado <br> 75,000
+                </div>
+                <div class="cardTolerante">
+                    Movimento Bom <br> 120,000
+                </div>
+                <div class="cardAlerta">
+                    Muito Movimentado <br> 225,000
+                </div>
             </div>
+            <div class="Movimento">
+                <div class="Grafico3">
+                    <canvas id="myChart3"></canvas>
+                </div>
+                <div class="Texto_Grafico">
+                    Com base nos dados captados do sensor <b>TRC-5000</b>, temos o dashboard com o gráfico de movimento do último dia.
+                </div>
             </div>
-
-
         </div>
+    </div>
+
+
+    </div>
     </div>
 
 
@@ -102,29 +149,29 @@
             datasets: [{
                 label: 'Temperatura (°C)',
                 data: [12,
-12,
-12,
-12,
-14,
-11,
-11,
-13,
-14,
-14,
-17,
-19,
-21,
-21,
-23,
-24,
-23,
-22,
-19,
-17,
-17,
-13,
-10,
-],
+                    12,
+                    12,
+                    12,
+                    14,
+                    11,
+                    11,
+                    13,
+                    14,
+                    14,
+                    17,
+                    19,
+                    21,
+                    21,
+                    23,
+                    24,
+                    23,
+                    22,
+                    19,
+                    17,
+                    17,
+                    13,
+                    10,
+                ],
                 borderWidth: 3
             }]
         },
@@ -141,93 +188,92 @@
     const ctx2 = document.getElementById('myChart2');
 
     new Chart(ctx2, {
-    type: 'line',
-    data: {
+        type: 'line',
+        data: {
 
-        labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
-        datasets: [{
-            label: 'Umidade (%)',
-            data: [58,
-58,
-60,
-60,
-60,
-54,
-54,
-54,
-31,
-31,
-31,
-22,
-22,
-22,
-35,
-35,
-35,
-2,
-2,
-2,
-57,
-57,
-58,
-],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+            labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
+            datasets: [{
+                label: 'Umidade (%)',
+                data: [58,
+                    58,
+                    60,
+                    60,
+                    60,
+                    54,
+                    54,
+                    54,
+                    31,
+                    31,
+                    31,
+                    22,
+                    22,
+                    22,
+                    35,
+                    35,
+                    35,
+                    2,
+                    2,
+                    2,
+                    57,
+                    57,
+                    58,
+                ],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
+    });
 
-const ctx3 = document.getElementById('myChart3');
+    const ctx3 = document.getElementById('myChart3');
 
     new Chart(ctx3, {
-    type: 'line',
-    data: {
+        type: 'line',
+        data: {
 
-        labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
-        datasets: [{
-            label: 'Movimento',
-            data: [1800,
-200,
-2500,
-1600,
-24000,
-32000,
-20000,
-15000,
-10000,
-3000,
-1000,
-50000,
-15000,
-6000,
-17000,
-12000,
-49000,
-10000,
-19000,
-7000,
-3000,
-1500,
-1000,
+            labels: ['1h até 2h', '2h até 3h', '3h até 4h', '4h até 5h', '5h até 6h', '6h até 7h', '7h até 8h', '8h até 9h', '9h até 10h', '10h até 11h', '11h até 12', '12h até 13h', '13h até 14h', '14h até 15h', '15h até 16h', '16h até 17h', '17h até 18h', '18h até 19h', '19h até 20h', '20h até 21h', '21h até 22h', '22h até 23h', '23h até 24h'],
+            datasets: [{
+                label: 'Movimento',
+                data: [1800,
+                    200,
+                    2500,
+                    1600,
+                    24000,
+                    32000,
+                    20000,
+                    15000,
+                    10000,
+                    3000,
+                    1000,
+                    50000,
+                    15000,
+                    6000,
+                    17000,
+                    12000,
+                    49000,
+                    10000,
+                    19000,
+                    7000,
+                    3000,
+                    1500,
+                    1000,
 
-],
-            borderWidth: 3
-        }]
-    },
-    options: {
-    
-        scales: {
-            y: {
-                beginAtZero: true
+                ],
+                borderWidth: 3
+            }]
+        },
+        options: {
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
-
+    });
 </script>
