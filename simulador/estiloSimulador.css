@@ -1,0 +1,249 @@
+    * {
+    font-family: Arial;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+/* Começo do header */
+.header {
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    border-bottom: solid #5F00B4 3px;
+    display: flex;
+}
+
+.logo {
+    
+    width: 100px;
+    height: 100px;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header ul #aqui {
+    font-weight: 1000;
+    color: #32b9cd;
+}
+
+.navBar {
+    width: 700px;
+    display: flex;
+    color: #5F00B4;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+a {
+    text-decoration: none;
+    color: #5F00B4;
+}
+
+/* fim do header */
+
+/* Começo do banner */
+
+.banner {
+    background-image: url(img/AvenidaPaulista.jpg);
+    background-position: 100% 89%;
+    background-size: cover;
+    width: 100%;
+    height: 570px;
+}
+
+.banner .container {
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.banner .container p {
+    background: rgba(165, 165, 165, 0.56);
+    border-radius: 15px;
+    color: black;
+    font-size: 25px;
+    width: 400px;
+    padding: 10px;
+}
+
+.banner .container p span {
+    font-weight: bold;
+}
+
+.btn_banner {
+    border: 0px;
+    border-radius: 20px;
+    background-color: rgba(95, 0, 180, 0.63);
+    width: 200px;
+    height: 50px;
+    font-size: 25px;
+}
+
+/* fim do banner */
+
+/* Começo do Social */
+
+.social {
+    background-color: #fbfbfb;
+}
+
+.card img {
+    margin-left: 25px;
+    margin-top: 25px;
+    width: 100px;
+    height: 100px;
+}
+
+.card .imgSocial {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.card .cor1 {
+    background-color: #d200ff26;
+}
+
+.card .cor2 {
+    background-color: rgba(50, 231, 184, 0.29);
+}
+
+.card .cor3 {
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+.social .container {
+    justify-content: space-evenly;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+.card h4 {
+    color: #d7424d;
+}
+
+.card p {
+    width: 150px;
+    text-align: center;
+}
+
+
+/* fim do Social */
+
+/* Começo do Sobre Nós */
+
+.SobreNos {
+    background-color: #39c8584a;
+    display: flex;
+    position: relative;
+}
+
+.cardSN {
+    width: 400px;
+    height: 525px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px;
+}
+
+.cardSN img {
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.container .cardSN h1 {
+    font-size: 60px;
+}
+
+.container .cardSN p {
+    width: 400px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.detalheAzul {
+    position: absolute;
+    width: 800px;
+    height: 350px;
+    left: 0px;
+    top: 265px;
+    z-index: -1;
+    background: #6000B5;
+    border-radius: 0px 200px 200px 0px;
+}
+
+/* Fim do Sobre Nós */
+
+/* Começo Perguntas Frequentes */
+.FAQ{
+    background-color: #ffffff4a;
+} 
+
+.FAQ .container {
+    align-items: center;
+    flex-direction: column;
+    height: 625px;
+}
+
+.question {
+    width: 500px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    background-color: #D9D9D98C;
+    border-radius: 20px;
+  }
+  
+  .question input,
+  .question .answer { display: none }
+  
+  .question label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    width: 100%
+  }
+  
+  .question input:checked ~ .answer {
+    display: block;
+    padding: 20px;
+  }
+
+  .OutrasDuvidas input{
+    display: flex;
+    width: 500px;
+    height: 50px;
+    background-color: #D9D9D98C;
+    border: 0;
+    margin-top: 10px;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+/* Fim Perguntas Frequentes */
+/* Inicio Rodapé */
+.Rodape .container{
+    background-color: #5053514a;
+    width: 100%;
+    height: 300px;
+}
+/* Fim Rodapé*/
