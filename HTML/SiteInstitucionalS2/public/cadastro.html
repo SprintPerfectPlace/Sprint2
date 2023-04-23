@@ -8,19 +8,14 @@
 
     <title>Perfect Place | Cadastro</title>
 
-<<<<<<< HEAD
     <script src="./JS/funcoes.js"></script>
     <script src="./JS/cadastrar.js"></script>
-=======
-    <script src="/JS/funcoes.js"></script>
->>>>>>> ac3e35e (Ataulizando a home do site)
 
     <link rel="stylesheet" href="./CSS/cadastro.css">
     <link rel="stylesheet" href="./CSS/estilo.css">
     <link rel="icon" href="./IMG/ImgSn.png">
     <link rel="preconnect" href="http://fonts.gstatic.com">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
 
 </head>
 
@@ -33,7 +28,7 @@
                 <img src="./IMG/nome-em-preto.png" class="logo2">
             </div>
             <ul class="navBar">
-                <a href="/Index.html">
+                <a href="Index.html">
                     <li>Home</li>
                 </a>
                 <a href="#SobreNos">
@@ -42,14 +37,14 @@
                 <a href="">
                     <li>Para a empresa</li>
                 </a>
-                <a href="#simulador">
+                <a href="simuladorFinanceiro.html">
                     <li>Simulador</li>
                 </a>
                 <li>|</li>
-                <a class="agora" href="/cadastro.html">
+                <a class="agora" href="cadastro.html">
                     <li>Cadastre-se</li>
                 </a>
-                <a href="/login.html">
+                <a href="login.html">
                     <li>Login</li>
                 </a>
             </ul>
@@ -78,7 +73,7 @@
 
                 <p>Confirmar Senha</p>
                 <input id="confirmacao_senha_input" type="password" placeholder="****">
-                
+
                 <p>ID da Empresa</p>
                 <input id="id_input" type="text" placeholder="A Empresa tem que disponibilizar um ID"><br>
 
@@ -95,7 +90,7 @@
     <!-- Fim cadastro -->
     <!-- Inicio rodapé -->
     <div class="rodape">
-        <div class="container"> 
+        <div class="container">
             <div class="informacoes">
                 <div class="RedesSociais">
                     <img src="img/imgRodape.png" alt="" class="imgRodape">
@@ -121,17 +116,16 @@
                 </div>
                 <div class="Contato">
                     <h3>Contato</h3>
-                    <a
-                        href="https://www.google.com/maps/place/S%C3%A3o+Paulo+Tech+School/@-23.5582906,-46.6618129,19z/data=!4m6!3m5!1s0x94ce59d2b063f663:0xc567c0d16d0bc582!8m2!3d-23.5581213!4d-46.661614!16s%2Fg%2F11b86nyly3">
+                    <a href="https://www.google.com/maps/place/S%C3%A3o+Paulo+Tech+School/@-23.5582906,-46.6618129,19z/data=!4m6!3m5!1s0x94ce59d2b063f663:0xc567c0d16d0bc582!8m2!3d-23.5581213!4d-46.661614!16s%2Fg%2F11b86nyly3">
                         <p>Office: Rua Haddock Lobo, 595</p>
                     </a>
                     <p>Telefone: (11) 3589-4043</p>
                     <p>Email: perfect.place@sptech.com</p>
                 </div>
             </div>
-        <div>
-    </div>
-    <!-- Fim rodapé -->
+            <div>
+            </div>
+            <!-- Fim rodapé -->
 </body>
 
 </html>
@@ -154,8 +148,7 @@
 
             finalizarAguardar();
             return false;
-        }
-        else {
+        } else {
             setInterval(sumirMensagem, 5000)
         }
 
@@ -173,7 +166,7 @@
                 senhaServer: senhaVar,
                 idServer: idVar
             })
-        }).then(function (resposta) {
+        }).then(function(resposta) {
 
             console.log("resposta: ", resposta);
 
@@ -191,7 +184,7 @@
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
-        }).catch(function (resposta) {
+        }).catch(function(resposta) {
             console.log(`#ERRO: ${resposta}`);
             finalizarAguardar();
         });
@@ -202,5 +195,4 @@
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
-
 </script>

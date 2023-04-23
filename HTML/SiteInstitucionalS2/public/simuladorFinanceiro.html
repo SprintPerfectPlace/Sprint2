@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./CSS/simulador.css">
+        <link rel="stylesheet" href="./CSS/estilo.css">
+        <title>Simulador Financeiro</title>
+    </head>
+
+    <body>
+        <!-- Começo do header -->
+        <div class="header">
+            <div class="container">
+                <div class="div_logo">
+                    <img src="./IMG/logo2.png" class="logo">
+                    <img src="./IMG/nome-em-preto.png" class="logo2">
+                </div>
+                <ul class="navBar">
+                    <a href="Index.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="#SobreNos">
+                        <li>Sobre nós</li>
+                    </a>
+                    <a href="">
+                        <li>Para a empresa</li>
+                    </a>
+                    <a class="agora" href="simuladorFinanceiro.html">
+                        <li>Simulador</li>
+                    </a>
+                    <li>|</li>
+                    <a href="cadastro.html">
+                        <li>Cadastre-se</li>
+                    </a>
+                    <a href="login.html">
+                        <li>Login</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <!-- Fim do header -->
+        <!-- Começo cadastro -->
+        <div class="simulador">
+            <h1>Simulador Financeiro</h1>
+            <div class="container">
+                <div class="cardSimulador">
+                    <p class="classP"> Faturamento mensal atual:</p><input id="input_faturamento">
+                    <!-- Quanto a empresa ganha sem a Perfect Place -->
+
+                    <p class="classP">Preço médio produto:</p> <input id="input_preço">
+                    <!-- média do preço dos produtos vendidos -->
+
+                    <p class="classP">Média produtos vendidos diários: </p><input id="input_vendas">
+                    <!-- Média de quantos produtos são vendidos diariamente -->
+
+                    <p class="classP">Dias de funcionamento mensal:</p> <input id="input_funcionamento">
+                    <!-- Quantos dias funcionará por mês -->
+
+                    <p class="classP">Custo total do investimento inicial:</p> <input id="input_investimento">
+                    <!-- Valor do investimento inicial para o quiosque -->
+
+                    <p class="classP">Custo mensal quiosque: </p><input id="input_despesa">
+                    <!-- Despesas do mês para manter o quiosque (Aluguel, salário, contas de água e luz...) -->
+                    <button onclick="Calcular()">Veja o resultado</button> 
+                    <br><br>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="cardResultado">
+                    <div class="resultado">
+                        <p> Resultado: </p>
+                        <div id="div_investimento" class="investimento"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Fim cadastro -->
+        <!-- Inicio rodapé -->
+        <div class="Rodape">
+            <div class="container">
+
+            </div>
+        </div>
+        <!-- Fim rodapé -->
+    </body>
+    </html>
+</body>
+
+<script>
+    function Teste(){
+        alert('Badarosca')
+    }
+
+    function Calcular(){
+
+        var faturamento_inicial = Number(input_faturamento.value)
+
+        var preço = Number(input_preço.value)
+        var vendas = Number(input_vendas.value)
+        var dias_funcionamento = Number(input_funcionamento.value)
+
+
+        var investimento_inicial = Number(input_investimento.value)
+        var despesa = Number(input_despesa.value)
+
+
+        var receita_diaria = preço * vendas
+        //  preço médio de vendas X vendas esperadas.
+
+        var lucro_mensal = receita_diaria * dias_funcionamento
+        //  Valor feito por dia,multiplicado pelos dias de funcionamento.
+
+        var porcentagem_lucro = Math.floor((lucro_mensal - faturamento_inicial) / faturamento_inicial * 100)
+        //  Porcentagem que a empresa receberá a mais com a Perfect Place.
+
+        var lucro_liquido = lucro_mensal - despesa
+        //  Quanto a empresa receberá no final do mês, já descontando as despesas.
+
+        var ROI = Math.floor((investimento_inicial - despesa) / (lucro_mensal) * 30)
+        //  ROI = Retorno de investimento)
+        //  investimento total - despesas, (pois  a despesa será paga todo mês). 30 = dias do mês.
+
+
+        div_investimento.innerHTML = `Com a Perfect Place, Seu faturamento aumentará em ${porcentagem_lucro}%. <br>
+        De R$${faturamento_inicial} faturados por mês, seu novo faturamento será R$${lucro_mensal}, tendo assim o valor líquido mensal de R$${lucro_liquido}.<br>
+        Com isso, seu retorno de investimento será em ${ROI} dias.
+        `
+
+
+
+    }
+</script>
