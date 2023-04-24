@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="./CSS/estilo.css">
     <link rel="icon" href="./IMG/ImgSn.png">
     <link rel="preconnect" href="http://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
 
 </head>
 
@@ -33,9 +34,6 @@
                 </a>
                 <a href="#SobreNos">
                     <li>Sobre nós</li>
-                </a>
-                <a href="">
-                    <li>Para a empresa</li>
                 </a>
                 <a href="simuladorFinanceiro.html">
                     <li>Simulador</li>
@@ -116,7 +114,8 @@
                 </div>
                 <div class="Contato">
                     <h3>Contato</h3>
-                    <a href="https://www.google.com/maps/place/S%C3%A3o+Paulo+Tech+School/@-23.5582906,-46.6618129,19z/data=!4m6!3m5!1s0x94ce59d2b063f663:0xc567c0d16d0bc582!8m2!3d-23.5581213!4d-46.661614!16s%2Fg%2F11b86nyly3">
+                    <a
+                        href="https://www.google.com/maps/place/S%C3%A3o+Paulo+Tech+School/@-23.5582906,-46.6618129,19z/data=!4m6!3m5!1s0x94ce59d2b063f663:0xc567c0d16d0bc582!8m2!3d-23.5581213!4d-46.661614!16s%2Fg%2F11b86nyly3">
                         <p>Office: Rua Haddock Lobo, 595</p>
                     </a>
                     <p>Telefone: (11) 3589-4043</p>
@@ -142,9 +141,77 @@
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
         var idVar = id_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || idVar == "") {
+
+        if (nomeVar.length > 20) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Nome tem que ser menos de 20 caracteres)";
+
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if ((emailVar.search("@") == -1) && (emailVar.search(".com") == -1)) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(O Email deve conter um @ e .com)";
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.search("@") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(O Email deve conter um @)";
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.search(".com") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(O Email deve conter um .com)";
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar.length != 8) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Senha tem que ter 8 caracteres)";
+
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Confirmar senha está diferente de senha)";
+
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (idVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(O ID Empresa deve ser inserido)";
 
             finalizarAguardar();
             return false;
@@ -166,7 +233,7 @@
                 senhaServer: senhaVar,
                 idServer: idVar
             })
-        }).then(function(resposta) {
+        }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
 
@@ -184,7 +251,7 @@
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
-        }).catch(function(resposta) {
+        }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
             finalizarAguardar();
         });
