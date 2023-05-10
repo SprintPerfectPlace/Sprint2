@@ -12,7 +12,7 @@
 #define DHTPIN A0
 
 #define LM35PIN A1
-#define LUMIPIN A2
+// #define LUMIPIN A2
 #define CHAVPIN 7
 
 DHT dht(DHTPIN, DHT11);

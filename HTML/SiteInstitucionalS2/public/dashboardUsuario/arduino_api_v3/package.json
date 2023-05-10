@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node main.js"
   },
-  "author": "SPTECH_2022 by MariseMiranda",
+  "author": "SPTECH_2023 by PerfectPlace",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
