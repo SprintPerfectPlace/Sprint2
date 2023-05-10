@@ -15,8 +15,8 @@ const serial = async (
         {
             host: 'localhost',
             port: 3306,
-            user: 'root',
-            password: '7725',
+            user: 'Tom',
+            password: 'Tom4002!',
             database: 'PerfectPlace'
         }
     ).promise();
@@ -51,16 +51,16 @@ const serial = async (
 
         if (HABILITAR_OPERACAO_INSERIR) {
             await poolBancoDados.execute(
-                `INSERT INTO Leitura (idLeitura, dado, fkSensor) VALUES (?, ?, ?);`,
-                [null, dht11Umidade, 1]
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [dht11Umidade, 1]
             );
             await poolBancoDados.execute(
-                `INSERT INTO Leitura (idLeitura, dado, fkSensor) VALUES (?, ?, ?);`,
-                [null, lm35Temperatura, 2]
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [lm35Temperatura, 2]
             );
             await poolBancoDados.execute(
-                `INSERT INTO Leitura (idLeitura, dado, fkSensor) VALUES (?, ?, ?);`,
-                [null, chave, 3]
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [chave, 3]
             );
         }
 
