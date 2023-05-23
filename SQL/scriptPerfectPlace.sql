@@ -61,6 +61,34 @@ CREATE TABLE Leitura(
 );
 DROP Table Leitura;
 
+SELECT * FROM Leitura;
 SELECT * FROM Leitura WHERE fkSensor = 1;
 SELECT * FROM Leitura WHERE fkSensor = 2;
 SELECT * FROM Leitura WHERE fkSensor = 3;
+
+INSERT INTO Leitura (dado, fkSensor) VALUES (20, 1);
+INSERT INTO Leitura (dado, fkSensor) VALUES (10, 2);
+INSERT INTO Leitura (dado, fkSensor) VALUES 
+(100, 1);
+
+INSERT INTO Leitura (dado, fkSensor) VALUES 
+(100, 2);
+
+INSERT INTO Leitura (dado, fkSensor) VALUES 
+(1, 3);
+
+
+SELECT 
+	Dado as Dado, 
+	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+FROM Leitura WHERE fkSensor = 1 ORDER BY idLeitura DESC LIMIT 7;
+
+SELECT 
+	Dado as Dado, 
+	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+FROM Leitura WHERE fkSensor = 2 ORDER BY idLeitura DESC LIMIT 7;
+
+SELECT 
+	Dado as Dado, 
+	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+FROM Leitura WHERE fkSensor = 3 ORDER BY idLeitura DESC LIMIT 7;

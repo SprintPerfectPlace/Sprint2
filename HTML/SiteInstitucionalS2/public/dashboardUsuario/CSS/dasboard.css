@@ -268,19 +268,21 @@ h1 {
 }
 
 .Grafico1 {
-    width: 500px;
+    width: 1000px;
     height: fit-content;
-    /* background-color: aqua; */
+    background-color: #1C1C1C;
 }
 
 .Grafico2 {
-    width: 500px;
+    width: 1000px;
     height: fit-content;
+    background-color: #1C1C1C;
 }
 
 .Grafico3 {
-    width: 500px;
+    width: 1000px;
     height: fit-content;
+    background-color: #1C1C1C;
 }
 
 .ResultaG1 {
