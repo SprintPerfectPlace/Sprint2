@@ -183,12 +183,53 @@ function buscarMedidasEmTempoReal_chave(idSensor) {
     return database.executar(instrucaoSql);
 }
 
+function buscarUltimasMedidas_movimento(idSensor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `
+        SELECT 
+	        COUNT(Dado) as Total 
+            FROM Leitura WHERE fkSensor = ${idSensor} AND Dado LIKE '1';`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoReal_movimento(idSensor) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `
+        SELECT 
+        Dado as chave,
+        DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura, 
+                        fkSensor 
+                        from Leitura where fkSensor = ${idSensor} 
+                    order by idLeitura desc limit 1`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarUltimasMedidas_umidade,
     buscarUltimasMedidas_temperatura,
     buscarUltimasMedidas_chave,
+    buscarUltimasMedidas_movimento,
     buscarMedidasEmTempoReal_umidade,
     buscarMedidasEmTempoReal_temperatura,
-    buscarMedidasEmTempoReal_chave
+    buscarMedidasEmTempoReal_chave,
+    buscarMedidasEmTempoReal_movimento
 }
