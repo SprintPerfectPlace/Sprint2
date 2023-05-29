@@ -59,6 +59,7 @@ CREATE TABLE Leitura(
     fkSensor INT, CONSTRAINT fkDashboardSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
     CONSTRAINT pkDashboard PRIMARY KEY (idLeitura, fkSensor)
 );
+
 DROP Table Leitura;
 
 SELECT * FROM Leitura;
@@ -92,3 +93,5 @@ SELECT
 	Dado as Dado, 
 	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
 FROM Leitura WHERE fkSensor = 3 ORDER BY idLeitura DESC LIMIT 7;
+
+DROP TABLE Leitura;
