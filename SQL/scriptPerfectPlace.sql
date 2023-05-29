@@ -76,7 +76,7 @@ INSERT INTO Leitura (dado, fkSensor) VALUES
 (100, 2);
 
 INSERT INTO Leitura (dado, fkSensor) VALUES 
-(1, 3);
+(0, 3);
 
 
 SELECT 
@@ -93,5 +93,9 @@ SELECT
 	Dado as Dado, 
 	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
 FROM Leitura WHERE fkSensor = 3 ORDER BY idLeitura DESC LIMIT 7;
+
+SELECT 
+	COUNT(Dado) as Total 
+FROM Leitura WHERE fkSensor = 3 AND Dado LIKE '1';
 
 DROP TABLE Leitura;
