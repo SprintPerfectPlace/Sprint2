@@ -156,6 +156,7 @@ h1 {
     border: 2px solid black;
 }
 
+
 .Analytics_Umidade {
     margin: auto;
     display: flex;
@@ -176,6 +177,22 @@ h1 {
     padding: 10px;
     width: fit-content;
     background-color: lightgreen;
+    border: 2px solid black;
+}
+
+.Analytics_Umidade .cardOtimo {
+    border-radius: 15px;
+    padding: 10px;
+    width: 100px;
+    background-color: rgba(80, 178, 80, 0.97);
+    border: 2px solid black;
+}
+
+.Analytics_Umidade .cardPerfeito {
+    border-radius: 15px;
+    padding: 10px;
+    width: 100px;
+    background-color: rgba(16, 139, 16, 0.921);
     border: 2px solid black;
 }
 
@@ -215,6 +232,22 @@ h1 {
     padding: 10px;
     width: 122.8px;
     background-color: yellow;
+    border: 2px solid black;
+}
+
+.Analytics_Movimento .cardOtimo {
+    border-radius: 15px;
+    padding: 10px;
+    width: 100px;
+    background-color: rgba(80, 178, 80, 0.97);
+    border: 2px solid black;
+}
+
+.Analytics_Movimento .cardPerfeito {
+    border-radius: 15px;
+    padding: 10px;
+    width: 100px;
+    background-color: rgba(16, 139, 16, 0.921);
     border: 2px solid black;
 }
 
