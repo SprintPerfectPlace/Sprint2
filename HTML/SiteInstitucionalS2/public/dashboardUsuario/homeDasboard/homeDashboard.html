@@ -48,13 +48,13 @@
     <div class="graficos">
       <h1>Home | Dashboard</h1>
       <div>
-        <h1>Veja os pontos da Av.Paulista </h1>
+        <h1>Veja os pontos da Av.Paulista | Dia 05/06 </h1>
       </div> <br />
 
       <div>
         <canvas id="myChart1"></canvas>
       </div>
-      <br/>
+      <br />
 
     </div>
   </div>
@@ -70,149 +70,179 @@
 </html>
 
 <script>
-  const ctx1 = document.getElementById('myChart1');
+  let proximaAtualizacao;
 
- new Chart(ctx1, {
-   type: 'bar',
-   data: {
-     labels: [
-       '5: 00 as 6: 00',
-       '6: 00 as 7: 00',
-       '7: 00 as 8: 00',
-       '8: 00 as 9: 00',
-       '9: 00 as 10: 00',
-       '10: 00 as 11: 00',
-       '11: 00 as 12: 00',
-       '12: 00 as 13: 00',
-       '13: 00 as 14: 00',
-       '14: 00 as 17: 00',
-       '17: 00 as 18: 00',
-       '18: 00 as 19: 00',
-       '19: 00 as 20: 00',
-       '20: 00 as 21: 00',
-       '21: 00 as 22: 00'
-     ],
-     datasets: [
-       {
-         label: 'Jardim Paulista',
-         backgroundColor: 'purple',
-         borderColor: 'purple',
-         data: [
-           24000,
-           28000,
-           10000,
-           25000,
-           15000,
-           5000,
-           4000,
-           70000,
-           30000,
-           5000,
-           36000,
-           20000,
-           15000,
-           9000,
-           4000
-         ],
-       },
-       {
-         label: 'Cerqueira César',
-         backgroundColor: 'darkturquoise',
-         borderColor: 'darkturquoise',
-         data: [
-           24000,
-           30000,
-           15000,
-           20000,
-           25000,
-           4000,
-           2000,
-           50000,
-           25000,
-           7000,
-           24000,
-           15000,
-           10000,
-           4000,
-           3000
-         ],
-       },
-       {
-         label: 'Paraíso',
-         backgroundColor: 'darkorange',
-         borderColor: 'darkorange',
-         data: [
-           24000,
-           32000,
-           20000,
-           15000,
-           10000,
-           3000,
-           1000,
-           50000,
-           15000,
-           6000,
-           49000,
-           10000,
-           19000,
-           7000,
-           3000
-         ],
-       },
-       {
-         label: 'Bela Vista',
-         backgroundColor: 'darkviolet',
-         borderColor: 'darkviolet',
-         data: [
-           22000,
-           36000,
-           25000,
-           10000,
-           5000,
-           2000,
-           3000,
-           20000,
-           35000,
-           4000,
-           42000,
-           11000,
-           20000,
-           6000,
-           2000
-         ],
-       },
-       {
-         label: 'Consolação',
-         backgroundColor: 'green',
-         borderColor: 'green',
-         data: [
-           26000,
-           44000,
-           5000,
-           5000,
-           20000,
-           1000,
-           5000,
-           35000,
-           15000,
-           8000,
-           29000,
-           19000,
-           11000,
-           4000,
-           3000
-         ],
-       }
-     ]
-   },
-   options: {
-     scales: {
-       y: {
-         beginAtZero: true
-       }
-     }
-   }
- });
+  window.onload = obterDadosGraficos();
 
+  function obterDadosGraficos() {
+    obterDadosGrafico(3)
+  }
+
+  function obterDadosGrafico(idSensor) {
+
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas_movimento`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
+
+          plotar_grafico(resposta, idSensor);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  var dados_jd_paulista = 173;
+  var dados_cq_cesar = 352;
+  var dados_paraiso = 510;
+  var dados_consolacao = 493;
+  var dados_bela_vista = 411;
+
+  function plotar_grafico(resposta, idSensor) {
+
+    let label_movimento = [];
+
+    let dados_movimento = {
+      labels: label_movimento,
+      datasets: [{
+        label: 'Jardim Paulista',
+        backgroundColor: 'purple',
+        borderColor: 'purple',
+        fill: false,
+        data: [
+          dados_jd_paulista
+        ],
+        tension: 0.1
+      },
+      {
+        label: 'Cerqueira César',
+        backgroundColor: 'green',
+        borderColor: 'green',
+        fill: false,
+        data: [
+          dados_cq_cesar
+        ],
+        tension: 0.1
+      },
+      {
+        label: 'Paraíso',
+        backgroundColor: 'darkorange',
+        borderColor: 'darkorange',
+        fill: false,
+        data: [
+          dados_paraiso
+        ],
+        tension: 0.1
+      }, {
+        label: 'Consolação',
+        backgroundColor: 'blue',
+        borderColor: 'blue',
+        fill: false,
+        data: [
+          dados_consolacao
+        ],
+        tension: 0.1
+      },
+      {
+        label: 'Bela Vista',
+        backgroundColor: 'gray',
+        borderColor: 'gray',
+        fill: false,
+        data: [
+          dados_bela_vista
+        ],
+        tension: 0.1
+      }]
+    }
+
+    // for (var i = 0; i < resposta.length; i++) {
+    //   var registro = resposta[i];
+    //   dados_jd_paulista += ((registro).chave);
+    // }
+
+    const config = {
+      type: 'bar',
+      data: dados_movimento,
+    };
+
+    let myChart1 = new Chart(
+      document.getElementById(`myChart1`),
+      config
+    );
+
+    setTimeout(() => atualizarGrafico(idSensor, dados_movimento, myChart1), 2000);
+  }
+
+  function atualizarGrafico(idSensor, dados_movimento, myChart1) {
+    fetch(`/medidas/tempo-real_movimento`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (novoRegistro) {
+
+          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+          console.log(`Dados atuais do gráfico:`);
+          console.log(dados_movimento);
+
+          if (novoRegistro[0].DataLeitura == dados_movimento.labels[dados_movimento.labels.length - 1]) {
+            console.log("---------------------------------------------------------------")
+            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            console.log("Horário do novo dado capturado:")
+            console.log(novoRegistro[0].DataLeitura)
+            console.log("Horário do último dado capturado:")
+            console.log(dados_movimento.labels[dados_movimento.labels.length - 1])
+            console.log("---------------------------------------------------------------")
+          } else {
+
+            dados_movimento.labels.shift(); // apagar o primeiro
+            dados_movimento.labels.push(novoRegistro[0].DataLeitura);
+            // tirando e colocando valores no gráfico
+            if (novoRegistro[0].chave == 1) {
+              dados_movimento.datasets[0].data.shift();  // apagar o primeiro de temperatura
+              dados_jd_paulista += novoRegistro[0].chave;
+              dados_movimento.datasets[0].data.push(dados_jd_paulista); // incluir uma nova medida de temperatura
+
+              dados_movimento.datasets[1].data.shift();  // apagar o primeiro de temperatura
+              dados_cq_cesar += novoRegistro[0].chave;
+              dados_movimento.datasets[1].data.push(dados_cq_cesar); // incluir uma nova medida de temperatura
+
+              dados_movimento.datasets[2].data.shift();  // apagar o primeiro de temperatura
+              dados_paraiso += novoRegistro[0].chave;
+              dados_movimento.datasets[2].data.push(dados_paraiso); // incluir uma nova medida de temperatura
+
+              dados_movimento.datasets[3].data.shift();  // apagar o primeiro de temperatura
+              dados_consolacao += novoRegistro[0].chave;
+              dados_movimento.datasets[3].data.push(dados_consolacao); // incluir uma nova medida de temperatura
+
+              dados_movimento.datasets[4].data.shift();  // apagar o primeiro de temperatura
+              dados_bela_vista += novoRegistro[0].chave;
+              dados_movimento.datasets[4].data.push(dados_bela_vista); // incluir uma nova medida de temperatura
+            } else {
+              console.log('esperando a pessoa passar pelo sensor')
+            }
+
+            myChart1.update();
+          }
+
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados_movimento, myChart1), 2000);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados_movimento, myChart1), 2000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+  }
 
 </script>

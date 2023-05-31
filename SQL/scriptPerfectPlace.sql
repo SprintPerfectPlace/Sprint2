@@ -11,12 +11,11 @@ CREATE TABLE Empresa(
 INSERT INTO Empresa VALUES
 (null, 'SPTech', '12345678901234'),
 (null, 'Safra', '11223344556677'),
-(null, 'Safra', '22334455667788');
+(null, 'Box Delivery', '22334455667788');
 
 CREATE TABLE Usuario(
 	idUsuario INT AUTO_INCREMENT,
     nome VARCHAR (20),
-    sobrenome VARCHAR (20),
     email VARCHAR(60),
     senha CHAR (8),
     fkEmpresa INT,
@@ -28,10 +27,16 @@ SELECT * FROM Usuario;
 
 CREATE TABLE LocalSensor(
 	idLocal INT PRIMARY KEY AUTO_INCREMENT,
+    CEP CHAR(8),
+    estado VARCHAR(25),
+    cidade VARCHAR(25),
     bairro VARCHAR (25),
     rua VARCHAR (25),
     numero VARCHAR (5)
 );
+
+INSERT INTO LocalSensor VALUES 
+(null, '08490490', 'São Paulo', 'São Paulo', 'Consolação', 'Rua Haddock Lobo', '595');
 
 
 CREATE TABLE Sensor(
@@ -42,24 +47,55 @@ CREATE TABLE Sensor(
     CONSTRAINT fkSensorLocal FOREIGN KEY (fkLocal) REFERENCES LocalSensor (idLocal)
 );
 
+INSERT INTO Sensor VALUES
+(null, 'dht11', 'Umidade', 1),
+(null, 'lm35', 'Temperatura', 1),
+(null, 'trc5000', 'Proximidade', 1);
+
 CREATE TABLE Leitura(
 	idLeitura INT AUTO_INCREMENT,
-    dado VARCHAR (10),
-    fkSensor INT,
-    DtLeitura DATETIME,
-    CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor),
-    CONSTRAINT pkCompostaLeituraSensor PRIMARY KEY (idLeitura, fkSensor)
+    Dado INT,
+    DataLeitura datetime default current_timestamp,
+    fkSensor INT, CONSTRAINT fkDashboardSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
+    CONSTRAINT pkDashboard PRIMARY KEY (idLeitura, fkSensor)
 );
 
+DROP Table Leitura;
 
-CREATE TABLE Dashboard(
-	idDashboard INT PRIMARY KEY AUTO_INCREMENT,
-    fkUsuario INT,
-    Usuario_fkEmpresa INT,
-    fkLeitura INT,
-    Leitura_fkSensor INT,
-    CONSTRAINT fkUsarioDashboard FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
-    CONSTRAINT fkUsarioEmpresaDashboard FOREIGN KEY (Usuario_fkEmpresa) REFERENCES Empresa(idEmpresa),
-    CONSTRAINT fkLeituraDashboard FOREIGN KEY (fkLeitura) REFERENCES Leitura(idLeitura),
-    CONSTRAINT fkLeituraSensorDashboard FOREIGN KEY (Leitura_fkSensor) REFERENCES Sensor(idSensor)
-);
+SELECT * FROM Leitura;
+SELECT * FROM Leitura WHERE fkSensor = 1;
+SELECT * FROM Leitura WHERE fkSensor = 2;
+SELECT * FROM Leitura WHERE fkSensor = 3;
+
+INSERT INTO Leitura (dado, fkSensor) VALUES (20, 1);
+INSERT INTO Leitura (dado, fkSensor) VALUES (10, 2);
+INSERT INTO Leitura (dado, fkSensor) VALUES 
+(100, 1);
+
+INSERT INTO Leitura (dado, fkSensor) VALUES 
+(100, 2);
+
+INSERT INTO Leitura (dado, fkSensor) VALUES 
+(0, 3);
+
+
+SELECT 
+	Dado as Dado, 
+	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+FROM Leitura WHERE fkSensor = 1 ORDER BY idLeitura DESC LIMIT 7;
+
+SELECT 
+	Dado as Dado, 
+	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+FROM Leitura WHERE fkSensor = 2 ORDER BY idLeitura DESC LIMIT 7;
+
+SELECT 
+	Dado as Dado, 
+	DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+FROM Leitura WHERE fkSensor = 3 ORDER BY idLeitura DESC LIMIT 7;
+
+SELECT 
+	COUNT(Dado) as Total 
+FROM Leitura WHERE fkSensor = 3 AND Dado LIKE '1';
+
+DROP TABLE Leitura;
