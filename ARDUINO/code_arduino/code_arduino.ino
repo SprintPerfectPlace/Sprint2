@@ -43,11 +43,11 @@ void loop() {
 
     int aproximidade = digitalRead(7);
     if(aproximidade == 0){
-      Serial.print("1");
+      Serial.print("0");
       
-    } else { Serial.print("0");}
+    } else { Serial.print("1");}
 
     Serial.println();
     
-delay(2000);
+delay(20000);
     };
