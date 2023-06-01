@@ -9,6 +9,10 @@ CREATE TABLE Empresa(
     qtdSensores INT
 );
 
+insert into Empresa 
+values (null, 'Safra', '1234567891012', 3);
+
+
 CREATE TABLE Usuario(
 	idUsuario INT AUTO_INCREMENT,
     nome VARCHAR (20),
@@ -47,3 +51,7 @@ CREATE TABLE Leitura(
     CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor),
     CONSTRAINT pkCompostaLeituraSensor PRIMARY KEY (idLeitura, fkSensor)
 );
+
+
+insert into Leitura 
+values(null, '1', '')

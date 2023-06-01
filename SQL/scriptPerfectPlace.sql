@@ -52,6 +52,8 @@ INSERT INTO Sensor VALUES
 (null, 'lm35', 'Temperatura', 1),
 (null, 'trc5000', 'Proximidade', 1);
 
+SELECT * from Sensor;
+
 CREATE TABLE Leitura(
 	idLeitura INT AUTO_INCREMENT,
     Dado INT,
@@ -60,6 +62,25 @@ CREATE TABLE Leitura(
     CONSTRAINT pkDashboard PRIMARY KEY (idLeitura, fkSensor)
 );
 
+insert into Leitura
+values (null, 1, default, 3),
+	   (null, 0, default, 3),
+       (null, 1, default, 3),
+       (null, 1, default, 3),
+       (null, 1, default, 3),
+       (null, 0, default, 3);
+       
+insert into Leitura
+values (null, 0, default, 3),
+	   (null, 1, default, 3),
+       (null, 0, default, 3),
+       (null, 1, default, 3),
+       (null, 0, default, 3),
+       (null, 0, default, 3),
+       (null, 0, default, 3),
+	   (null, 1, default, 3),
+       (null, 1, default, 3);
+
 DROP Table Leitura;
 
 SELECT * FROM Leitura;
@@ -67,17 +88,23 @@ SELECT * FROM Leitura WHERE fkSensor = 1;
 SELECT * FROM Leitura WHERE fkSensor = 2;
 SELECT * FROM Leitura WHERE fkSensor = 3;
 
-INSERT INTO Leitura (dado, fkSensor) VALUES (20, 1);
+INSERT INTO Leitura (dado, fkSensor) VALUES (1, 1);
+INSERT INTO Leitura (dado, fkSensor) VALUES (0, 1);
 INSERT INTO Leitura (dado, fkSensor) VALUES (10, 2);
-INSERT INTO Leitura (dado, fkSensor) VALUES 
-(100, 1);
+INSERT INTO Leitura (dado, fkSensor) VALUES (100, 2);
+INSERT INTO Leitura (dado, fkSensor) VALUES (0, 3);
 
-INSERT INTO Leitura (dado, fkSensor) VALUES 
-(100, 2);
+-- Select Brandão 
 
-INSERT INTO Leitura (dado, fkSensor) VALUES 
-(0, 3);
+select count(*) as QtdAcionamento, fksensor,
+if(minute(DataLeitura)>24 and minute(DataLeitura)<48, minute(DataLeitura)-24, 
+if(minute(DataLeitura)>49 and minute(DataLeitura)<60, minute(DataLeitura)-36, minute(DataLeitura))
+)
+as Ajustado
+from leitura where fksensor = 3
+group by fkSensor, Ajustado;
 
+-- Select Brandão 
 
 SELECT 
 	Dado as Dado, 
