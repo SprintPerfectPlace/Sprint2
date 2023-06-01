@@ -323,3 +323,25 @@ h1 {
     width: 10px;
     padding: 5px;
 }
+
+/*  */
+
+.perigo-frio {
+    background-color: #5c6bc0;
+  }
+  
+  .perigo-quente {
+    background-color: #ff7043;
+  }
+  
+  .alerta-frio {
+    background-color: #42a5f5;
+  }
+  
+  .alerta-quente {
+    background-color: #ffee58;
+  }
+  
+  .ideal {
+    background-color: #9ccc65;
+  }

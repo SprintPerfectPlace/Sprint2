@@ -144,7 +144,7 @@ function buscarUltimasMedidas_chave(idSensor, limite_linhas) {
         )
         as Ajustado
         from leitura where fksensor = ${idSensor}
-        group by fkSensor, Ajustado;`;
+        group by fkSensor, Ajustado order by ajustado;`;
 
         //             `SELECT 
 	    //     Dado as chave, 

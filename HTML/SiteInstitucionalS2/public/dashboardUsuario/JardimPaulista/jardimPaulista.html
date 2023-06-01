@@ -8,9 +8,15 @@
     <title>Jardim Paulista</title>
     <link rel="stylesheet" href="../CSS/dasboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../alertas/alerta.js"></script>
+    <script src="../../JS/funcoes.js"></script>
 </head>
 
-<body>
+<body onload="obterdados()">
+
+<div id="alerta">
+
+</div>
     <div class="conteudo">
         <div class="barraFixa">
             <div class="imgUser">
@@ -44,10 +50,6 @@
                 </a>
             </div>
         </div>
-
-        <div class="dash">
-            <div id="alerta">
-            </div>
 
         <div class="graficos">
             <h1>Jardim Paulista</h1><br>
@@ -464,6 +466,104 @@
          }, 30000);
     }
 
+
+    function atualizacaoPeriodica() {
+        obterdados(1);
+      
+        function sendData() {
+			var http = new XMLHttpRequest();
+			http.open('POST', 'http://localhost:3000/api/sendData', false);
+			http.send(null);
+		}
+
+        setInterval(() => {
+			sendData();
+		}, 2000);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+    function obterdados(idLeitura) {
+        fetch(`/medidas/tempo-real_chave/${idLeitura}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            qtdAcionamento: resposta[0].qtdAcionamento,
+                        }
+
+                        alertar(resposta[0].qtdAcionamento, idLeitura);
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function alertar(qtdAcionamento, idLeitura) {
+        var limites = {
+            muitoMovimento: 15,
+            bomMovimento: 12,
+            movimentado: 10,
+            baixoMovimento: 5,
+            poucoMovimento: 3
+        };
+
+        var classe_temperatura = 'cor-alerta';
+
+        if (qtdAcionamento >= limites.muitoMovimento) {
+            classe_temperatura = 'cor-alerta perigo-quente';
+            console.log("caiu no 1")
+        }
+        else if (qtdAcionamento < limites.muitoMovimento && qtdAcionamento >= limites.bomMovimento) {
+            classe_temperatura = 'cor-alerta alerta-quente';
+            console.log("caiu no 2")
+        }
+        else if (qtdAcionamento < limites.bomMovimento && qtdAcionamento > limites.movimentado) {
+            classe_temperatura = 'cor-alerta ideal';
+            console.log("caiu no 3")
+        }
+        else if (qtdAcionamento <= limites.movimentado && qtdAcionamento > limites.baixoMovimento) {
+            classe_temperatura = 'cor-alerta alerta-frio';
+            console.log("caiu no 4")
+        }
+        else if (qtdAcionamento < limites.poucoMovimento) {
+            classe_temperatura = 'cor-alerta perigo-frio';
+            console.log("caiu no 5")
+        }
+
+        var card;
+
+        if (idLeitura == 1) {
+            temp_aquario_1.innerHTML = temperatura + "°C";
+            card = card_1
+        } else if (idLeitura == 2) {
+            temp_aquario_2.innerHTML = temperatura + "°C";
+            card = card_2
+        } else if (idLeitura == 3) {
+            temp_aquario_3.innerHTML = temperatura + "°C";
+            card = card_3
+        } else if (idLeitura == 4) {
+            temp_aquario_4.innerHTML = temperatura + "°C";
+            card = card_4
+        }
+
+        // alterando
+        card.className = classe_temperatura;
+
+    }
+
+    function atualizacaoPeriodica() {
+        obterdados(idSensor);
+    }
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
     // buscando a última medida inserida em tabela contendo as capturas, 
