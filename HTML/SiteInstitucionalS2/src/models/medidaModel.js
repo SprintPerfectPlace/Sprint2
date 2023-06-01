@@ -137,12 +137,22 @@ function buscarUltimasMedidas_chave(idSensor, limite_linhas) {
     //                 order by id desc`;
     // } else 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `
-        SELECT 
-	        Dado as chave, 
-	        DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
-        FROM Leitura WHERE fkSensor = ${idSensor}
-                    ORDER BY idLeitura DESC LIMIT ${limite_linhas}`;
+        instrucaoSql = 
+        `select count(*) as QtdAcionamento, fksensor as Sensor,
+        if(minute(DataLeitura)>24 and minute(DataLeitura)<48, minute(DataLeitura)-24, 
+        if(minute(DataLeitura)>48 and minute(DataLeitura)<60, minute(DataLeitura)-36, minute(DataLeitura))
+        )
+        as Ajustado
+        from leitura where fksensor = ${idSensor}
+        group by fkSensor, Ajustado;`;
+
+        //             `SELECT 
+	    //     Dado as chave, 
+	    //     DataLeitura, DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura
+        // FROM Leitura WHERE fkSensor = ${idSensor}
+        //             ORDER BY idLeitura DESC LIMIT ${limite_linhas}`;
+
+        
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

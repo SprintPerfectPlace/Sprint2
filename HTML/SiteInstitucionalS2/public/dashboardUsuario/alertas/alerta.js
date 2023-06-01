@@ -23,7 +23,7 @@ function obterdados(idLeitura) {
 }
 
 function alertar(resposta, idLeitura) {
-    var temp = resposta[0].temperatura;
+    var temp = resposta[0].chave;
 
     console.log(idLeitura === resposta[0].fkSensor)
     
@@ -31,11 +31,11 @@ function alertar(resposta, idLeitura) {
 
 
     var limites = {
-        muitoMovimento: 50,
-        bomMovimento: 22,
-        movimentado: 20,
-        baixoMovimento: 10,
-        poucoMovimento: 5
+        muitoMovimento: 15,
+        bomMovimento: 12,
+        movimentado: 10,
+        baixoMovimento: 5,
+        poucoMovimento: 3
 
         // mudar parametros
     };
@@ -71,23 +71,6 @@ function alertar(resposta, idLeitura) {
         exibirAlerta(temp, idLeitura, grauDeAviso, grauDeAvisoCor)
     }
 
-    var card;
-
-    if (idLeitura == 1) {
-        temp_aquario_1.innerHTML = temp + "°C";
-        card = card_1
-    } else if (idLeitura == 2) {
-        temp_aquario_2.innerHTML = temp + "°C";
-        card = card_2
-    } else if (idLeitura == 3) {
-        temp_aquario_3.innerHTML = temp + "°C";
-        card = card_3
-    } else if (idLeitura == 4) {
-        temp_aquario_4.innerHTML = temp + "°C";
-        card = card_4
-    }
-
-    card.className = classe_temperatura;
 }
 
 function exibirAlerta(temp, idLeitura, grauDeAviso, grauDeAvisoCor) {

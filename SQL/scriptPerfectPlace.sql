@@ -96,13 +96,13 @@ INSERT INTO Leitura (dado, fkSensor) VALUES (0, 3);
 
 -- Select Brandão 
 
-select count(*) as QtdAcionamento, fksensor,
+select count(*) as QtdAcionamento, fksensor as Sensor,
 if(minute(DataLeitura)>24 and minute(DataLeitura)<48, minute(DataLeitura)-24, 
-if(minute(DataLeitura)>49 and minute(DataLeitura)<60, minute(DataLeitura)-36, minute(DataLeitura))
+if(minute(DataLeitura)>48 and minute(DataLeitura)<60, minute(DataLeitura)-36, minute(DataLeitura))
 )
 as Ajustado
 from leitura where fksensor = 3
-group by fkSensor, Ajustado;
+group by fkSensor, Ajustado  order by Ajustado;
 
 -- Select Brandão 
 
