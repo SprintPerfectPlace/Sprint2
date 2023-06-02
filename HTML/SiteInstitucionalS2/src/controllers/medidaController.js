@@ -160,6 +160,24 @@ function buscarMedidasEmTempoReal_movimento(req, res) {
     });
 }
 
+function buscarMedidasAlerta_Temperatura(req, res) {
+    var idSensor = 2;
+
+    console.log(`Recuperando medidas para o alerta`)
+
+    medidaModel.buscarMedidasAlerta_Temperatura(idSensor).then(function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log("Houve um erro ao buscar a medida para o alerta.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     buscarUltimasMedidas_umidade,
     buscarUltimasMedidas_temperatura,
@@ -168,5 +186,6 @@ module.exports = {
     buscarMedidasEmTempoReal_umidade,
     buscarMedidasEmTempoReal_temperatura,
     buscarMedidasEmTempoReal_chave,
-    buscarMedidasEmTempoReal_movimento
+    buscarMedidasEmTempoReal_movimento,
+    buscarMedidasAlerta_Temperatura
 }

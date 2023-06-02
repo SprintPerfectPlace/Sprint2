@@ -1,10 +1,14 @@
 var alertas = [];
 
-function obterdados(idSensor) {
-    fetch(`/medidas/ultimas_temperatura/${idSensor}`)
-        .then(resposta => {
+function atualizacaoPeriodica(idSensor) {
+    obterdados(idSensor)
+    setTimeout(atualizacaoPeriodica, 5000);
+}
 
-            if (resposta.ok) {
+function obterdados(idSensor) {
+    fetch(`/medidas/alerta_temperatura`)
+        .then(resposta => {
+            if (resposta.status == 200) {
                 resposta.json().then(resposta => {
 
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -12,29 +16,28 @@ function obterdados(idSensor) {
                     alertar(resposta, idSensor);
                 });
             } else {
-
-                console.error('Nenhum dado encontrado ou erro na API');
+                console.error(`Nenhum dado encontrado para o id ${idSensor} ou erro na API`);
             }
         })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
         });
+
 }
 
 function alertar(resposta, idSensor) {
-    var temp = resposta[0].QtdAcionamento;
+    var temp = resposta[0].Dado;
+    var local = resposta[0].Bairro;
 
-    console.log(idSensor === resposta[0].fkSensor)
-    
-    var grauDeAviso ='';
 
+    var grauDeAviso = '';
 
     var limites = {
-        muito_quente: 10,
-        quente: 8,
-        ideal: 6,
-        frio: 4,
-        muito_frio: 2
+        muito_quente: 35,
+        quente: 29,
+        ideal: 24,
+        frio: 13,
+        muito_frio: 7
     };
 
     var classe_temperatura = 'cor-alerta';
@@ -43,73 +46,87 @@ function alertar(resposta, idSensor) {
         classe_temperatura = 'cor-alerta perigo-quente';
         grauDeAviso = 'perigo quente'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temp, idSensor, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, local, idSensor, grauDeAviso, grauDeAvisoCor)
     }
     else if (temp < limites.muito_quente && temp >= limites.quente) {
         classe_temperatura = 'cor-alerta alerta-quente';
         grauDeAviso = 'alerta quente'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temp, idSensor, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, local, idSensor, grauDeAviso, grauDeAvisoCor)
     }
     else if (temp < limites.quente && temp > limites.frio) {
         classe_temperatura = 'cor-alerta ideal';
-        removerAlerta(idSensor);
+        removerAlerta();
     }
     else if (temp <= limites.frio && temp > limites.muito_frio) {
         classe_temperatura = 'cor-alerta alerta-frio';
         grauDeAviso = 'alerta frio'
         grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temp, idSensor, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, local, idSensor, grauDeAviso, grauDeAvisoCor)
     }
     else if (temp <= limites.muito_frio) {
         classe_temperatura = 'cor-alerta perigo-frio';
         grauDeAviso = 'perigo frio'
         grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(temp, idSensor, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, local, idSensor, grauDeAviso, grauDeAvisoCor)
     }
 
-    var card;
+    // var card;
 
+    // if (document.getElementById(`temp_sensor_${idSensor}`) != null) {
+    //     document.getElementById(`temp_sensor_${idSensor}`).innerHTML = temp + "°C";
+    // }
 
-    card.className = classe_temperatura;
+    // if (document.getElementById(`card_${idSensor}`)) {
+    //     card = document.getElementById(`card_${idSensor}`)
+    //     card.className = classe_temperatura;
+    // }
 }
 
-function exibirAlerta(temp, idSensor, grauDeAviso, grauDeAvisoCor) {
+function exibirAlerta(temp, local, idSensor, grauDeAviso, grauDeAvisoCor) {
     var indice = alertas.findIndex(item => item.idSensor == idSensor);
 
     if (indice >= 0) {
-        alertas[indice] = { idSensor, temp, grauDeAviso, grauDeAvisoCor }
+        alertas[indice] = { idSensor, local, temp, grauDeAviso, grauDeAvisoCor }
     } else {
-        alertas.push({ idSensor, temp, grauDeAviso, grauDeAvisoCor });
+        alertas.push({ idSensor, local, temp, grauDeAviso, grauDeAvisoCor });
     }
 
     exibirCards();
-    
-// Dentro da div com classe grauDeAvisoCor há um caractere "invisível", 
-// que pode ser inserido clicando com o seu teclado em alt+255 ou pelo código adicionado acima.
+
 }
 
-function removerAlerta(idSensor) {
-    alertas = alertas.filter(item => item.idSensor != idSensor);
-    exibirCards();
+function removerAlerta() {
+    alerta.style.display = 'none'
 }
- 
+
 function exibirCards() {
+
+    var alerta = document.getElementById("alerta");
     alerta.innerHTML = '';
 
     for (var i = 0; i < alertas.length; i++) {
         var mensagem = alertas[i];
-        alerta.innerHTML += transformarEmDiv(mensagem);
+        alerta.innerHTML = transformarEmDiv(mensagem);
     }
 }
 
-function transformarEmDiv({ idSensor, temp, grauDeAviso, grauDeAvisoCor }) {
-    return `<div class="mensagem-alarme">
-    <div class="informacao">
-    <div class="${grauDeAvisoCor}">&#12644;</div> 
-     <h3>Aquário ${idSensor} está em estado de ${grauDeAviso}!</h3>
-    <small>Temperatura ${temp}.</small>   
+function transformarEmDiv({local, temp, grauDeAviso, grauDeAvisoCor }) {
+    return `
+    <div class="mensagem-alarme">
+        <div class="informacao">
+            <div class="${grauDeAvisoCor}">&#12644;</div> 
+            <h3>${local} está em estado de ${grauDeAviso}!</h3>
+            <small>Temperatura ${temp}.</small>   
+        </div>
+        <div class="alarme-sino"></div>
     </div>
-    <div class="alarme-sino"></div>
-    </div>`;
+    `;
 }
+
+// function atualizacaoPeriodica() {
+//     JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
+//         obterdados(item.id)
+//     });
+//     setTimeout(atualizacaoPeriodica, 5000);
+// }

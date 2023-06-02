@@ -8,9 +8,11 @@
     <title>Paraíso</title>
     <link rel="stylesheet" href="../CSS/dasboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../alertas/alerta.js"></script>
 </head>
 
 <body>
+
     <div class="conteudo">
         <div class="barraFixa">
             <div class="imgUser">
@@ -46,6 +48,8 @@
         </div>
         <div class="graficos">
             <h1>Paraiso</h1><br>
+            <div id="alerta">
+            </div>
             <h2>Temperatura:</h2>
             <div class="Analytics_Temperatura">
                 <div class="cardAlerta">
@@ -458,7 +462,7 @@
 
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
+    // buscando a última medida inserida em tabela contendo as capturas,
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models

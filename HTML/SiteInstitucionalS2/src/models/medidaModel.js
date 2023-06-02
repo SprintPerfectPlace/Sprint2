@@ -109,6 +109,7 @@ function buscarMedidasEmTempoReal_temperatura(idSensor) {
         instrucaoSql = `
         SELECT 
         Dado as temperatura,
+        DataLeitura,
         DATE_FORMAT(DataLeitura,'%H:%i:%s') as DataLeitura, 
                         fkSensor 
                         from Leitura where fkSensor = ${idSensor} 
@@ -232,6 +233,29 @@ function buscarMedidasEmTempoReal_movimento(idSensor) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMedidasAlerta_Temperatura(idSensor){
+    instrucaoSql = ''
+
+    if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `
+        SELECT
+            Sensor.idSensor as ID_Sensor, 
+            Sensor.nome as Sensor,
+            Sensor.funcionalidade as Tipo,
+            LocalSensor.bairro as Bairro,
+            Leitura.Dado as Dado,
+            Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 1 AND idSensor = 2 ORDER BY Data DESC LIMIT 1;
+        `
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    console.log("Executando a instrução SQL: \n "+ instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarUltimasMedidas_umidade,
@@ -241,5 +265,6 @@ module.exports = {
     buscarMedidasEmTempoReal_umidade,
     buscarMedidasEmTempoReal_temperatura,
     buscarMedidasEmTempoReal_chave,
-    buscarMedidasEmTempoReal_movimento
+    buscarMedidasEmTempoReal_movimento,
+    buscarMedidasAlerta_Temperatura
 }

@@ -35,4 +35,8 @@ router.get("/tempo-real_movimento", function (req, res) {
     medidaController.buscarMedidasEmTempoReal_movimento(req, res);
 });
 
+router.get("/alerta_temperatura", function (req, res) {
+    medidaController.buscarMedidasAlerta_Temperatura(req, res);
+});
+
 module.exports = router;

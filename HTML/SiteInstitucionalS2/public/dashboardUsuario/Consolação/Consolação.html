@@ -8,11 +8,12 @@
     <title>Consolação</title>
     <link rel="stylesheet" href="../CSS/dasboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../alertas/alerta.js"></script>
 </head>
 
 <body>
     <div class="conteudo">
-        <div class="barraFixa">
+        <div class="barraFixa"> 
             <div class="imgUser">
                 <img src="https://th.bing.com/th/id/R.c11b6f38dffc24a4508217513b0e50bd?rik=Pt%2bkITlukiMkWg&riu=http%3a%2f%2fwww.emmegi.co.uk%2fwp-content%2fuploads%2f2019%2f01%2fUser-Icon.jpg&ehk=zjS04fF4nxx%2bpkvRPsSezyic3Z7Yfu%2fuoT75KnbNv1Y%3d&risl=&pid=ImgRaw&r=0"
                     alt="">
@@ -46,6 +47,8 @@
         </div>
         <div class="graficos">
             <h1>Consolação</h1><br>
+            <div id="alerta">
+            </div>
             <h2>Temperatura:</h2>
             <div class="Analytics_Temperatura">
                 <div class="cardAlerta">
@@ -134,6 +137,7 @@
     let proximaAtualizacao;
 
     window.onload = obterDadosGraficos();
+    window.onload = atualizacaoPeriodica(2);
 
     function obterDadosGraficos() {
         obterDadosGrafico(1)
@@ -457,7 +461,7 @@
     }
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
+    // buscando a última medida inserida em tabela contendo as capturas,
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
