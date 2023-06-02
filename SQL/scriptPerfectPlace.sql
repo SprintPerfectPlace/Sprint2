@@ -35,9 +35,16 @@ CREATE TABLE LocalSensor(
     numero VARCHAR (5)
 );
 
-INSERT INTO LocalSensor VALUES 
-(null, '08490490', 'São Paulo', 'São Paulo', 'Consolação', 'Rua Haddock Lobo', '595');
+TRUNCATE TABLE LocalSensor;
 
+SELECT * FROM LocalSensor;
+
+INSERT INTO LocalSensor VALUES 
+(null, '08490490', 'São Paulo', 'São Paulo', 'Consolação', 'Rua Haddock Lobo', '595'),
+(null, '08490490', 'São Paulo', 'São Paulo', 'Paraíso', 'Rua Haddock Lobo', '595'),
+(null, '08490490', 'São Paulo', 'São Paulo', 'Bela Vista', 'Rua Haddock Lobo', '595'),
+(null, '08490490', 'São Paulo', 'São Paulo', 'Cerqueira César', 'Rua Haddock Lobo', '595'),
+(null, '08490490', 'São Paulo', 'São Paulo', 'Jardim Paulista', 'Rua Haddock Lobo', '595');
 
 CREATE TABLE Sensor(
 	idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,9 +57,29 @@ CREATE TABLE Sensor(
 INSERT INTO Sensor VALUES
 (null, 'dht11', 'Umidade', 1),
 (null, 'lm35', 'Temperatura', 1),
-(null, 'trc5000', 'Proximidade', 1);
+(null, 'trc5000', 'Proximidade', 1),
+(null, 'dht11', 'Umidade', 2),
+(null, 'lm35', 'Temperatura', 2),
+(null, 'trc5000', 'Proximidade', 2),
+(null, 'dht11', 'Umidade', 3),
+(null, 'lm35', 'Temperatura', 3),
+(null, 'trc5000', 'Proximidade', 3),
+(null, 'dht11', 'Umidade', 4),
+(null, 'lm35', 'Temperatura', 4),
+(null, 'trc5000', 'Proximidade', 4),
+(null, 'dht11', 'Umidade', 5),
+(null, 'lm35', 'Temperatura', 5),
+(null, 'trc5000', 'Proximidade', 5);
 
-SELECT * from Sensor;
+Select * FROM Leitura WHERE fkSensor = 2;
+
+SELECT 
+Sensor.idSensor as ID_Sensor,
+Sensor.nome as Sensor,
+Sensor.funcionalidade as Tipo,
+LocalSensor.bairro as Bairro,
+Leitura.Dado as Dado FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 1 AND idSensor = 2 ORDER BY Leitura.Dado LIMIT 1;
 
 CREATE TABLE Leitura(
 	idLeitura INT AUTO_INCREMENT,
@@ -61,6 +88,8 @@ CREATE TABLE Leitura(
     fkSensor INT, CONSTRAINT fkDashboardSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
     CONSTRAINT pkDashboard PRIMARY KEY (idLeitura, fkSensor)
 );
+
+DROP TABLE LocalSensor;
 
 insert into Leitura
 values (null, 1, default, 3),
@@ -81,6 +110,7 @@ values (null, 0, default, 3),
 	   (null, 1, default, 3),
        (null, 1, default, 3);
 
+
 DROP Table Leitura;
 
 SELECT * FROM Leitura;
@@ -90,9 +120,9 @@ SELECT * FROM Leitura WHERE fkSensor = 3;
 
 INSERT INTO Leitura (dado, fkSensor) VALUES (1, 1);
 INSERT INTO Leitura (dado, fkSensor) VALUES (0, 1);
+INSERT INTO Leitura (dado, fkSensor) VALUES (1, 2);
 INSERT INTO Leitura (dado, fkSensor) VALUES (10, 2);
-INSERT INTO Leitura (dado, fkSensor) VALUES (100, 2);
-INSERT INTO Leitura (dado, fkSensor) VALUES (0, 3);
+INSERT INTO Leitura (dado, fkSensor) VALUES (1, 3);
 
 -- Select Brandão 
 
@@ -104,7 +134,7 @@ as Ajustado
 from leitura where fksensor = 3
 group by fkSensor, Ajustado  order by Ajustado;
 
--- Select Brandão 
+-- Select Brandão
 
 SELECT 
 	Dado as Dado, 
@@ -126,3 +156,13 @@ SELECT
 FROM Leitura WHERE fkSensor = 3 AND Dado LIKE '1';
 
 DROP TABLE Leitura;
+SELECT * FROM Usuario;
+
+SELECT
+            Sensor.idSensor as ID_Sensor, 
+            Sensor.nome as Sensor,
+            Sensor.funcionalidade as Tipo,
+            LocalSensor.bairro as Bairro,
+            Leitura.Dado as Dado,
+            Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 1 AND idSensor = 2 ORDER BY Data DESC LIMIT 1;
