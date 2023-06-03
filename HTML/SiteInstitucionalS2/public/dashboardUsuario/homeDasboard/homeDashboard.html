@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Dashboard</title>
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="../CSS/dasboard.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -14,12 +14,11 @@
   <div class="conteudo">
     <div class="barraFixa">
       <div class="imgUser">
-        <img
-          src="https://th.bing.com/th/id/R.c11b6f38dffc24a4508217513b0e50bd?rik=Pt%2bkITlukiMkWg&riu=http%3a%2f%2fwww.emmegi.co.uk%2fwp-content%2fuploads%2f2019%2f01%2fUser-Icon.jpg&ehk=zjS04fF4nxx%2bpkvRPsSezyic3Z7Yfu%2fuoT75KnbNv1Y%3d&risl=&pid=ImgRaw&r=0"
-          alt="">
+        <img src="../../IMG/logo2.png">
       </div>
+      <span id="NomeUser" class="NomeUser"></span>
       <div class="opcoes">
-        <a href="../homeDasboard/homeDashboard.html" class="home">
+        <a href="../homeDasboard/homeDashboard.html" id="agora" class="home">
           Home | Dashboard
         </a>
         <a href="../JardimPaulista/jardimPaulista.html" class="paulista">
@@ -39,9 +38,6 @@
         </a>
         <a href="/Index.html" class="sair">
           Sair
-        </a>
-        <a href="../arduino_api_v3/apiarduino.html" class="sensores">
-          Sensores ao Vivo
         </a>
       </div>
     </div>
@@ -70,6 +66,8 @@
 </html>
 
 <script>
+  NomeUser.innerHTML = `${sessionStorage.NOME_USUARIO}`;
+
   let proximaAtualizacao;
 
   window.onload = obterDadosGraficos();

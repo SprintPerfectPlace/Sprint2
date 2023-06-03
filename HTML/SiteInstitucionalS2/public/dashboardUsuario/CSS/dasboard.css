@@ -9,7 +9,8 @@ body {
 }
 
 .barraFixa {
-    background-color: rgba(96, 0, 180, 0.356);
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 16%, rgba(95,0,180,1) 43%);
     width: 15%;
     height: 1000px;
     position: fixed;
@@ -81,14 +82,15 @@ body {
 
 a {
     margin-top: 30px;
-    background-color: green;
+    background-color: #39c858;
     text-decoration: none;
     color: black;
     padding: 10px;
 }
 
 #agora {
-    background-color: yellow;
+    background-color: #4ac564b4;
+    font-weight: bold;
 }
 
 .opcoes .home {
@@ -396,4 +398,12 @@ h1 {
     50%  {transform: rotate(25deg)}
     75%  {transform: rotate(-25deg)}
     100% {transform: rotate(25deg)}
+  }
+
+
+
+
+  .NomeUser{
+    font-weight: bold;
+    font-size: 20px;
   }
