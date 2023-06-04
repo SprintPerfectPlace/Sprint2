@@ -15,8 +15,8 @@ const serial = async (
         {
             host: 'localhost',
             port: 3306,
-            user: 'aluno',
-            password: 'sptech',
+            user: 'root',
+            password: '',
             database: 'PerfectPlace'
         }
     ).promise();
