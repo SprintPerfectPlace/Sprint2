@@ -46,6 +46,8 @@ INSERT INTO LocalSensor VALUES
 (null, '08490490', 'São Paulo', 'São Paulo', 'Cerqueira César', 'Rua Haddock Lobo', '595'),
 (null, '08490490', 'São Paulo', 'São Paulo', 'Jardim Paulista', 'Rua Haddock Lobo', '595');
 
+SELECT * FROM LocalSensor;
+
 CREATE TABLE Sensor(
 	idSensor INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR (20),
@@ -122,6 +124,10 @@ INSERT INTO Leitura (dado, fkSensor) VALUES (1, 1);
 INSERT INTO Leitura (dado, fkSensor) VALUES (0, 1);
 INSERT INTO Leitura (dado, fkSensor) VALUES (1, 2);
 INSERT INTO Leitura (dado, fkSensor) VALUES (10, 2);
+INSERT INTO Leitura (dado, fkSensor) VALUES (7, 8);
+INSERT INTO Leitura (dado, fkSensor) VALUES (30, 5);
+INSERT INTO Leitura (dado, fkSensor) VALUES (36, 11);
+INSERT INTO Leitura (dado, fkSensor) VALUES (3, 14);
 INSERT INTO Leitura (dado, fkSensor) VALUES (1, 3);
 
 -- Select Brandão 
@@ -165,4 +171,4 @@ SELECT
             LocalSensor.bairro as Bairro,
             Leitura.Dado as Dado,
             Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
-		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 1 AND idSensor = 2 ORDER BY Data DESC LIMIT 1;
+		        JOIN Leitura ON idSensor = fkSensor WHERE idSensor = 14 ORDER BY Data DESC LIMIT 1;
