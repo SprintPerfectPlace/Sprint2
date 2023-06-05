@@ -6,7 +6,7 @@ function atualizacaoPeriodica(idSensor) {
 }
 
 function obterdados(idSensor) {
-    fetch(`/medidas/alerta_temperatura`)
+    fetch(`/medidas/alerta_temperatura_consolacao`)
         .then(resposta => {
             if (resposta.status == 200) {
                 resposta.json().then(resposta => {

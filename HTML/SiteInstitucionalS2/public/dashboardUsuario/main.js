@@ -62,6 +62,54 @@ const serial = async (
                 `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
                 [chave, 3]
             );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [dht11Umidade, 4]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [lm35Temperatura, 5]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [chave, 6]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [dht11Umidade, 7]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [lm35Temperatura, 8]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [chave, 9]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [dht11Umidade, 10]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [lm35Temperatura, 11]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [chave, 12]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [dht11Umidade, 13]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [lm35Temperatura, 14]
+            );
+            await poolBancoDados.execute(
+                `INSERT INTO Leitura (dado, fkSensor) VALUES (?, ?);`,
+                [chave, 15]
+            );
         }
 
     });

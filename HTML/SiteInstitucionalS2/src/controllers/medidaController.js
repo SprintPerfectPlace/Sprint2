@@ -160,12 +160,84 @@ function buscarMedidasEmTempoReal_movimento(req, res) {
     });
 }
 
-function buscarMedidasAlerta_Temperatura(req, res) {
+function buscarMedidasAlerta_Temperatura_Consolacao(req, res) {
     var idSensor = 2;
 
     console.log(`Recuperando medidas para o alerta`)
 
-    medidaModel.buscarMedidasAlerta_Temperatura(idSensor).then(function (resultado) {
+    medidaModel.buscarMedidasAlerta_Temperatura_Consolacao(idSensor).then(function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log("Houve um erro ao buscar a medida para o alerta.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function buscarMedidasAlerta_Temperatura_Bela_Vista(req, res) {
+    var idSensor = 8;
+
+    console.log(`Recuperando medidas para o alerta`)
+
+    medidaModel.buscarMedidasAlerta_Temperatura_Bela_Vista(idSensor).then(function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log("Houve um erro ao buscar a medida para o alerta.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function buscarMedidasAlerta_Temperatura_Paraiso(req, res) {
+    var idSensor = 5;
+
+    console.log(`Recuperando medidas para o alerta`)
+
+    medidaModel.buscarMedidasAlerta_Temperatura_Paraiso(idSensor).then(function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log("Houve um erro ao buscar a medida para o alerta.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function buscarMedidasAlerta_Temperatura_Cerqueira_Cesar(req, res) {
+    var idSensor = 11;
+
+    console.log(`Recuperando medidas para o alerta`)
+
+    medidaModel.buscarMedidasAlerta_Temperatura_Cerqueira_Cesar(idSensor).then(function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log("Houve um erro ao buscar a medida para o alerta.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function buscarMedidasAlerta_Temperatura_Jardim_Paulista(req, res) {
+    var idSensor = 14;
+
+    console.log(`Recuperando medidas para o alerta`)
+
+    medidaModel.buscarMedidasAlerta_Temperatura_Jardim_Paulista(idSensor).then(function (resultado) {
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -187,5 +259,9 @@ module.exports = {
     buscarMedidasEmTempoReal_temperatura,
     buscarMedidasEmTempoReal_chave,
     buscarMedidasEmTempoReal_movimento,
-    buscarMedidasAlerta_Temperatura
+    buscarMedidasAlerta_Temperatura_Consolacao,
+    buscarMedidasAlerta_Temperatura_Bela_Vista,
+    buscarMedidasAlerta_Temperatura_Paraiso,
+    buscarMedidasAlerta_Temperatura_Cerqueira_Cesar,
+    buscarMedidasAlerta_Temperatura_Jardim_Paulista
 }

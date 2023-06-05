@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <title>Cerqueira César</title>
     <link rel="stylesheet" href="../CSS/dasboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../alertas/alerta_cerqueira_cesar.js"></script>
 </head>
 
 <body>
@@ -43,6 +44,8 @@
         </div>
         <div class="graficos">
             <h1>Cerqueira César</h1><br>
+            <div id="alerta">
+            </div>
             <h2>Temperatura:</h2>
             <div class="Analytics_Temperatura">
                 <div class="cardAlerta">
@@ -133,6 +136,7 @@
     let proximaAtualizacao;
 
     window.onload = obterDadosGraficos();
+    window.onload = atualizacaoPeriodica(11);
 
     function obterDadosGraficos() {
         obterDadosGrafico(1)

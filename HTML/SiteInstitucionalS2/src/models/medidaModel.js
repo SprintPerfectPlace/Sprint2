@@ -233,7 +233,7 @@ function buscarMedidasEmTempoReal_movimento(idSensor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasAlerta_Temperatura(idSensor){
+function buscarMedidasAlerta_Temperatura_Consolacao(idSensor){
     instrucaoSql = ''
 
     if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
@@ -245,7 +245,99 @@ function buscarMedidasAlerta_Temperatura(idSensor){
             LocalSensor.bairro as Bairro,
             Leitura.Dado as Dado,
             Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
-		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 1 AND idSensor = 2 ORDER BY Data DESC LIMIT 1;
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 1 AND idSensor = ${idSensor} ORDER BY Data DESC LIMIT 1;
+        `
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    console.log("Executando a instrução SQL: \n "+ instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasAlerta_Temperatura_Bela_Vista(idSensor){
+    instrucaoSql = ''
+
+    if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `
+        SELECT
+            Sensor.idSensor as ID_Sensor, 
+            Sensor.nome as Sensor,
+            Sensor.funcionalidade as Tipo,
+            LocalSensor.bairro as Bairro,
+            Leitura.Dado as Dado,
+            Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 3 AND idSensor = ${idSensor} ORDER BY Data DESC LIMIT 1;
+        `
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    console.log("Executando a instrução SQL: \n "+ instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasAlerta_Temperatura_Paraiso(idSensor){
+    instrucaoSql = ''
+
+    if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `
+        SELECT
+            Sensor.idSensor as ID_Sensor, 
+            Sensor.nome as Sensor,
+            Sensor.funcionalidade as Tipo,
+            LocalSensor.bairro as Bairro,
+            Leitura.Dado as Dado,
+            Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 2 AND idSensor = ${idSensor} ORDER BY Data DESC LIMIT 1;
+        `
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    console.log("Executando a instrução SQL: \n "+ instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasAlerta_Temperatura_Cerqueira_Cesar(idSensor){
+    instrucaoSql = ''
+
+    if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `
+        SELECT
+            Sensor.idSensor as ID_Sensor, 
+            Sensor.nome as Sensor,
+            Sensor.funcionalidade as Tipo,
+            LocalSensor.bairro as Bairro,
+            Leitura.Dado as Dado,
+            Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 4 AND idSensor = ${idSensor} ORDER BY Data DESC LIMIT 1;
+        `
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    console.log("Executando a instrução SQL: \n "+ instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasAlerta_Temperatura_Jardim_Paulista(idSensor){
+    instrucaoSql = ''
+
+    if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+        instrucaoSql = `
+        SELECT
+            Sensor.idSensor as ID_Sensor, 
+            Sensor.nome as Sensor,
+            Sensor.funcionalidade as Tipo,
+            LocalSensor.bairro as Bairro,
+            Leitura.Dado as Dado,
+            Leitura.DataLeitura as Data FROM Sensor JOIN LocalSensor ON idLocal = fkLocal 
+		        JOIN Leitura ON idSensor = fkSensor WHERE fkLocal = 5 AND idSensor = ${idSensor} ORDER BY Data DESC LIMIT 1;
         `
 
     } else {
@@ -266,5 +358,9 @@ module.exports = {
     buscarMedidasEmTempoReal_temperatura,
     buscarMedidasEmTempoReal_chave,
     buscarMedidasEmTempoReal_movimento,
-    buscarMedidasAlerta_Temperatura
+    buscarMedidasAlerta_Temperatura_Consolacao,
+    buscarMedidasAlerta_Temperatura_Bela_Vista,
+    buscarMedidasAlerta_Temperatura_Paraiso,
+    buscarMedidasAlerta_Temperatura_Cerqueira_Cesar,
+    buscarMedidasAlerta_Temperatura_Jardim_Paulista
 }
