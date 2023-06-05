@@ -48,9 +48,5 @@ void loop() {
 
     Serial.println();
     
-<<<<<<< HEAD
-delay(20000);
-=======
-delay(10000);
->>>>>>> ea02a4a613524e972b4e1daf51fb94502d2e8d34
+delay(2000);
     };
